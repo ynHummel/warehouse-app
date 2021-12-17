@@ -1,7 +1,8 @@
-<h1>Bem vindo ao WareHouse App</h1>
+<h1>WareHouse App</h1>
 
-<h2>Galpões cadastrados:</h2>
+<h3>Boas vindas ao sistema de gestão de estoques</h3>
+<h3>Galpões cadastrados:</h3>
 <% @warehouses.each do |w| %>
-  <%= w.name %>
+  <%= link_to w.name, warehouse_path(w.id) %>
   <%= w.code %>
 <% end %>

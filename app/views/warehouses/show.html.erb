@@ -1,0 +1,10 @@
+<h1> <%= @warehouse.name %> </h1>
+<h3><%= @warehouse.code %></h3>
+<p><%= @warehouse.description %></p>
+<p><%= @warehouse.address %></p>
+<p><%= @warehouse.city %>/<%= @warehouse.state %> </p>
+<p>CEP: <%= @warehouse.postal_code %></p>
+<p>Área total: <%= @warehouse.total_area %>m2</p>
+<p>Área Útil: <%= @warehouse.useful_area %>m2</p>
+
+<%= link_to 'Voltar', root_path %>
