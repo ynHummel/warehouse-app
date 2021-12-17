@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    render plain: "Bem vindo ao WareHouse App"
+    @warehouses = Warehouse.all
   end
 end
