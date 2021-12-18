@@ -14,4 +14,25 @@ describe 'User tries to register a supplier' do
     expect(page).to have_field 'E-mail'
     expect(page).to have_field 'Telefone' 
   end
+
+  it 'successfully' do
+    visit root_path
+    click_on 'Fornecedores'
+    click_on 'Cadastrar fornecedor'
+    fill_in 'Nome Fantasia', with: 'Fantasy Supplier'
+    fill_in 'Razão Social', with: 'FS fornecimentos SA'
+    fill_in 'CNPJ', with: '12345678901234'
+    fill_in 'Endereço', with: 'Av dos Produtos'
+    fill_in 'E-mail', with: 'fantasyprodutos@fornecimentos.com'
+    fill_in 'Telefone', with: '0000-0000'
+    click_on 'Salvar'
+
+    expect(page).to have_content('Fornecedor registrado com sucesso')
+    expect(page).to have_content('Fantasy Supplier')
+    expect(page).to have_content('FS fornecimentos SA')
+    expect(page).to have_content('CNPJ: 12345678901234')
+    expect(page).to have_content('Endereço: Av dos Produtos')
+    expect(page).to have_content('E-mail: fantasyprodutos@fornecimentos.com')
+    expect(page).to have_content('Telefone: 0000-0000')
+  end
 end

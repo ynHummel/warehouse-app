@@ -1,4 +1,5 @@
 class WarehousesController < ApplicationController
+  
   def show
     id = params[:id]
     @warehouse = Warehouse.find(id)
@@ -23,4 +24,5 @@ class WarehousesController < ApplicationController
       render 'new'
     end
   end
+
 end
