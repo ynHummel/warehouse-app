@@ -58,7 +58,6 @@ describe 'Visitor opens the homepage' do
     expect(page).not_to have_content('00000-000')
     expect(page).not_to have_content('10000')
     expect(page).not_to have_content('8000')
-    
   end
 
 end
