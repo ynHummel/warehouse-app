@@ -1,0 +1,40 @@
+<h1>Novo Fornecedor</h1>
+
+<% if @supplier.errors.any?  %>
+  <span> Verifique os campos abaixo: </span>
+  <ul>
+    <% @supplier.errors.full_messages.each do |msg|  %>
+      <li> <%= msg %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @supplier do |form| %>
+  <div>
+    <%= form.label :trading_name %>
+    <%= form.text_field :trading_name %>
+  </div>
+  <div>
+    <%= form.label :company_name %>
+    <%= form.text_field :company_name %>
+  </div>
+  <div>
+    <%= form.label :cnpj %>
+    <%= form.text_area :cnpj %>
+  </div>
+  <div>
+    <%= form.label :address %>
+    <%= form.text_field :address %>
+  </div>
+  <div>
+    <%= form.label :email %>
+    <%= form.text_field :email %>
+  </div>
+  <div>
+    <%= form.label :telephone %>
+    <%= form.text_field :telephone %>
+  </div>
+  <div>
+    <%= form.submit 'Salvar'  %>
+  </div>
+<% end  %>

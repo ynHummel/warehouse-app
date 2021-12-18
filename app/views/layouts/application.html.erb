@@ -11,7 +11,12 @@
   </head>
 
   <body>
-    <header></header>
+    <header>
+      <nav>
+        <%= link_to 'Início', root_path %> |
+        <%= link_to 'Fornecedores', suppliers_path %> 
+      </nav>
+    </header>
     <main>
       <%= flash[:notice] %>
       <%= flash[:alert] %>

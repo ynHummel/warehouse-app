@@ -1,0 +1,7 @@
+<h1>Fornecedores Cadastrados</h1>
+
+<%= link_to 'Cadastrar fornecedor', new_supplier_path  %>
+
+<% @suppliers.each do |supp| %>
+  <%= link_to supp.name %>
+<% end %>

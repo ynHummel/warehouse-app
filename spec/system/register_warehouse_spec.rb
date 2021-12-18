@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User registers a warehouse' do
+describe 'User tries to register a warehouse' do
   it 'from the homepage' do
     visit root_path
     click_on 'Cadastrar novo galpão'
