@@ -17,7 +17,7 @@ describe 'Visitor sees the warehouse page' do
     expect(page).to have_content 'Av teste'
     expect(page).to have_content 'São Paulo/SP'
     expect(page).to have_content 'CEP: 00000-000'
-    expect(page).to have_content 'Área total: 10000'
+    expect(page).to have_content 'Área Total: 10000'
     expect(page).to have_content 'Área Útil: 8000'
 
   end
