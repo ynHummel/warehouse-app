@@ -24,7 +24,7 @@ describe 'User tries to register a supplier' do
     fill_in 'CNPJ', with: '12345678901234'
     fill_in 'Endereço', with: 'Av dos Produtos'
     fill_in 'E-mail', with: 'fantasyprodutos@fornecimentos.com'
-    fill_in 'Telefone', with: '0000-0000'
+    fill_in 'Telefone', with: '00000000'
     click_on 'Salvar'
 
     expect(page).to have_content('Fornecedor registrado com sucesso')
@@ -33,6 +33,23 @@ describe 'User tries to register a supplier' do
     expect(page).to have_content('CNPJ: 12345678901234')
     expect(page).to have_content('Endereço: Av dos Produtos')
     expect(page).to have_content('E-mail: fantasyprodutos@fornecimentos.com')
-    expect(page).to have_content('Telefone: 0000-0000')
+    expect(page).to have_content('Telefone: 00000000')
   end
+
+  it 'with obligatory information at fault' do
+    visit root_path
+    click_on 'Fornecedores'
+    click_on 'Cadastrar fornecedor'
+    click_on 'Salvar'
+
+    expect(page).to_not have_content('Fornecedor registrado com sucesso')
+    expect(page).to have_content('Não foi possível registrar o Fornecedor')
+    expect(page).to have_content('Nome Fantasia não pode ficar em branco')
+    expect(page).to have_content('Razão Social não pode ficar em branco')
+    expect(page).to have_content('CNPJ não pode ficar em branco')
+    expect(page).to have_content('E-mail não pode ficar em branco')
+  end
+
+  
+
 end
