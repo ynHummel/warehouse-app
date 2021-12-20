@@ -5,4 +5,6 @@ Rails.application.routes.draw do
   get '/warehouses', to: redirect('/')
 
   resources :suppliers, only: [:index, :show, :new, :create]
+
+  resources :product_types, only:[:show, :new, :create]
 end

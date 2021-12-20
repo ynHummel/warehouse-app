@@ -1,0 +1,33 @@
+<h1>Cadastrar modelo de produto</h1>
+
+<%= form_with model: @product_type do |f| %>
+  <div>
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name %>
+  </div>
+  <div>
+    <%= f.label :weight, 'Peso' %>
+    <%= f.text_field :weight %>
+  </div>
+  <div>
+    <%= f.label :height, 'Altura' %>
+    <%= f.text_field :height %>
+  </div>
+  <div>
+    <%= f.label :width, 'Largura' %>
+    <%= f.text_field :width %>
+  </div>
+  <div>
+    <%= f.label :length, 'Profundidade' %>
+    <%= f.text_field :length %>
+  </div>
+  <div>
+    <%= f.label :sku, 'Código SKU' %>
+    <%= f.text_field :sku %>
+  </div>
+  <div>
+    <%= f.label :supplier_id, 'Fornecedor' %>
+    <%= f.collection_select :supplier_id, @suppliers, :id, :trading_name %>
+  </div>
+  <%= f.submit 'Salvar' %>
+<% end %>
