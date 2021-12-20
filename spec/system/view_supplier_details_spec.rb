@@ -26,13 +26,13 @@ describe 'User sees supplier details' do
       cnpj: '12345678901234', address: 'Av dos Produtos',
       email: 'fantasyprodutos@fornecimentos.com', telephone: '00000000' 
     )
-    ProductType.create!( 
+    p1 = ProductType.create!( 
       name: 'Caneca Star Wars', height: 14, width: 10, length: 8,
-      weight: 300, sku: 'CN202100SW', supplier: supplier
+      weight: 300, supplier: supplier
     )
-    ProductType.create!( 
+    p2 = ProductType.create!( 
       name: 'Pelúcia Dumbo', height: 50, width: 40, length: 20,
-      weight: 400, sku: 'PL202100DMB', supplier: supplier
+      weight: 400, supplier: supplier
     )
 
     visit root_path
@@ -42,8 +42,8 @@ describe 'User sees supplier details' do
     expect(page).to have_css('h1', text: 'Fantasy Supplier')
     expect(page).to have_css('h2', text: 'Produtos deste Fornecedor:')
     expect(page).to have_content('Caneca Star Wars')
-    expect(page).to have_content('CN202100SW')
+    expect(page).to have_content("#{p1.sku}")
     expect(page).to have_content('Pelúcia Dumbo')
-    expect(page).to have_content('PL202100DMB')
+    expect(page).to have_content("#{p2.sku}")
   end
 end

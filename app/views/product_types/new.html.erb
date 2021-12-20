@@ -1,5 +1,14 @@
 <h1>Cadastrar modelo de produto</h1>
 
+<% if @product_type.errors.any?  %>
+  <span> Verifique os campos abaixo: </span>
+  <ul>
+    <% @product_type.errors.full_messages.each do |msg|  %>
+      <li> <%= msg %> </li>
+    <% end %>
+  </ul>
+<% end %>
+
 <%= form_with model: @product_type do |f| %>
   <div>
     <%= f.label :name, 'Nome' %>
