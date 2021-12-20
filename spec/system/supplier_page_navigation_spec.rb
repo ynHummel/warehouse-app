@@ -26,13 +26,11 @@ describe 'Visitor opens the supplier page' do
     
     expect(page).to have_content('Fantasy Supplier')
     expect(page).to have_content('FS fornecimentos SA')
-    expect(page).to have_content('12345678901234')
-    expect(page).to have_content('fantasyprodutos@fornecimentos.com')
+   
     
     expect(page).to have_content('Real Supplier')
     expect(page).to have_content('RS fornecimentos SA')
-    expect(page).to have_content('12345678901234')
-    expect(page).to have_content('realprodutos@fornecimentos.com')
+    
   end
 
   it 'and there are no suppliers' do
@@ -41,5 +39,4 @@ describe 'Visitor opens the supplier page' do
 
     expect(page).to have_content 'Nenhum fornecedor cadastrado'
   end
-
 end

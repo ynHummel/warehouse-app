@@ -16,9 +16,9 @@ describe 'User register a product type' do
     click_on 'Cadastrar modelo de produto'
     fill_in 'Nome', with: 'Caneca Star Wars'
     fill_in 'Peso', with: 300
-    fill_in 'Altura', with: '12'
-    fill_in 'Largura', with: '8'
-    fill_in 'Profundidade', with: '14'
+    fill_in 'Altura', with: 12
+    fill_in 'Largura', with: 8
+    fill_in 'Profundidade', with: 14
     fill_in 'Código SKU', with: 'CN202100SW'
     select 'Cerâmicas Geek', from: 'Fornecedor'
     click_on 'Salvar'

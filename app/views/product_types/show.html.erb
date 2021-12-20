@@ -1,10 +1,10 @@
 <h1> <%= @product_type.name %> </h1>
 <h3>SKU: <%= @product_type.sku %></h3>
 <dl>
-  <dt>Peso</dt>
+  <dt>Peso:</dt>
   <dd><%= @product_type.weight %> gramas</dd>
   <dt>Dimensões:</dt>
-  <dd><%= @product_type.height %> x <%= @product_type.width %> x <%= @product_type.length %></dd>
+  <dd><%= @product_type.dimensions %></dd>
   <dt>Fornecedor:</dt>
   <dd><%= @product_type.supplier.trading_name %></dd>
 </dl>

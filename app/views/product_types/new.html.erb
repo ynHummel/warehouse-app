@@ -27,7 +27,7 @@
   </div>
   <div>
     <%= f.label :supplier_id, 'Fornecedor' %>
-    <%= f.collection_select :supplier_id, @suppliers, :id, :trading_name %>
+    <%= f.collection_select :supplier_id, @suppliers, :id, :trading_name, { include_blank: true } %>
   </div>
   <%= f.submit 'Salvar' %>
 <% end %>

@@ -1,13 +1,16 @@
 <h1>Fornecedores Cadastrados</h1>
 
 <%= link_to 'Cadastrar fornecedor', new_supplier_path  %>
+
 <% if @suppliers.empty? %>
   <p>Nenhum fornecedor cadastrado</p>
 <% else %>
+
   <% @suppliers.each do |supp| %>
-    <%= link_to supp.trading_name, supplier_path(supp.id) %>
-    <%= supp.company_name %>
-    <%= supp.cnpj %>
-    <%= supp.email %>
+    <div>
+      <%= link_to supp.trading_name, supplier_path(supp.id) %>
+      - <%= supp.company_name %>
+    </div>
   <% end %>
+  
 <% end %>
