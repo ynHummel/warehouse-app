@@ -16,6 +16,13 @@ class ProductType < ApplicationRecord
 
   private
   def generate_sku
-    self.sku = SecureRandom.hex(10).upcase
+    loop do
+      new_sku = SecureRandom.hex(10).upcase
+      if !ProductType.where(sku: new_sku).exists?
+        self.sku = new_sku
+        break
+      end
+    end
   end
+  
 end
