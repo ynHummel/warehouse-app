@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe 'User Logins' do
+describe 'User Login' do
   it 'successfully' do
     User.create!(email: 'yuri@email.com', password:'12345678')
 
@@ -16,5 +16,25 @@ describe 'User Logins' do
     expect(page).not_to have_link 'Entrar'
     expect(page).to have_link 'Sair'
     expect(page).to have_content 'Olá yuri@email.com'
+  end
+
+  it 'and logout' do
+    User.create!(email: 'yuri@email.com', password:'12345678')
+
+    visit root_path
+    within 'nav' do
+      click_on 'Entrar'
+    end
+    fill_in 'E-mail', with: 'yuri@email.com'
+    fill_in 'Senha', with: '12345678'
+    click_on 'Log in'
+    within 'nav' do
+      click_on 'Sair'
+    end
+
+    expect(current_path).to eq root_path
+    expect(page).to have_link 'Entrar'
+    expect(page).not_to have_link 'Sair'
+    expect(page).not_to have_content 'Olá yuri@email.com'
   end
 end
