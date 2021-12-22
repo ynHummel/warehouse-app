@@ -1,7 +1,22 @@
 require 'rails_helper'
 
 describe 'User tries to register a warehouse' do
+  it 'Visitor cant see the menu' do
+    visit root_path
+
+    expect(page).not_to have_link 'Cadastrar novo galpão'
+  end
+
+  it 'Visitor cant access the registration form' do
+    visit new_warehouse_path
+
+    expect(current_path).to eq new_user_session_path
+  end
+
   it 'from the homepage' do
+    user = User.create!(email: 'yuri@email.com', password:'12345678')
+    login_as(user, :scope => :user)
+    
     visit root_path
     click_on 'Cadastrar novo galpão'
 
@@ -18,6 +33,9 @@ describe 'User tries to register a warehouse' do
   end
 
   it 'successfully' do
+    user = User.create!(email: 'yuri@email.com', password:'12345678')
+    login_as(user, :scope => :user)
+
     visit root_path
     click_on 'Cadastrar novo galpão'
     fill_in 'Nome', with: 'Juiz de Fora'
@@ -43,6 +61,9 @@ describe 'User tries to register a warehouse' do
   end
 
   it 'and it fails' do
+    user = User.create!(email: 'yuri@email.com', password:'12345678')
+    login_as(user, :scope => :user)
+
     visit root_path
     click_on 'Cadastrar novo galpão'
     click_on 'Salvar'

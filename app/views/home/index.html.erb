@@ -1,7 +1,11 @@
 <h1>WareHouse App</h1>
 
 <h3>Boas vindas ao sistema de gestão de estoques</h3>
-<%= link_to 'Cadastrar novo galpão', new_warehouse_path  %>
+
+<% if user_signed_in? %>
+  <%= link_to 'Cadastrar novo galpão', new_warehouse_path  %>
+<% end %>
+
 <h3>Galpões cadastrados:</h3>
 <% @warehouses.each do |w| %>
   <%= link_to w.name, warehouse_path(w.id) %>
