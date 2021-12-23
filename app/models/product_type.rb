@@ -1,5 +1,7 @@
 class ProductType < ApplicationRecord
   belongs_to :supplier
+  has_many :product_bundle_items
+  has_many :product_bundles, through: :product_bundle_items
 
   before_create :generate_sku
 

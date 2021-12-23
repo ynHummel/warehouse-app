@@ -1,0 +1,6 @@
+<h1> <%= @product_bundle.name %></h1>
+<h3>SKU: <%= @product_bundle.sku %></h3>
+
+<%  @product_bundle.product_types.each do |p| %>
+<%= p.name %>
+<% end %>
