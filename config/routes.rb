@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'home#index'
 
-  resources :warehouses, only: [:show, :new, :create]
+  resources :warehouses, only: [:show, :new, :create, :edit, :update]
   get '/warehouses', to: redirect('/')
 
   resources :suppliers, only: [:index, :show, :new, :create]
