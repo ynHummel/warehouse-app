@@ -20,7 +20,7 @@
   </tr>
   <% @supplier.product_types.each do |p| %>
     <tr>
-      <td><%= p.name %></td>
+      <td> <%= link_to p.name, product_type_path(p.id) %></td>
       <td><%= p.sku %></td>
     </tr>
   <% end %>

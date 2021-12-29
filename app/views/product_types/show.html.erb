@@ -8,3 +8,6 @@
   <dt>Fornecedor:</dt>
   <dd><%= @product_type.supplier.trading_name %></dd>
 </dl>
+
+<%= link_to 'Voltar', @product_type.supplier %> |
+<%= link_to 'Editar', edit_product_type_path %>

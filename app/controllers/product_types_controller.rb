@@ -26,4 +26,29 @@ class ProductTypesController < ApplicationController
     end
   end
 
+  def edit
+    id = params[:id]
+    @product_type = ProductType.find(id)
+    @suppliers = Supplier.all
+  end
+
+  def update
+    @suppliers = Supplier.all
+    id = params[:id]
+
+    product_type_params = params.require(:product_type).permit(
+      :name, :weight, :length, :height, :width, :supplier_id 
+    )
+
+    @product_type = ProductType.find(id)
+    if @product_type.update(product_type_params)
+      redirect_to product_type_path(@product_type.id), notice:'Modelo de produto atualizado com sucesso' 
+    else
+      flash.now[:alert] = 'Não foi possível atualizar o modelo de produto'
+      render 'edit'
+    end
+
+  end
+
+
 end
