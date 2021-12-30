@@ -11,10 +11,11 @@ describe 'User tries to edit ProductType details' do
       company_name: 'Geek fornecimentos SA', cnpj: '12345678901234',
       email: 'geekceramicas@fornecimentos.com' 
     )
+    cat = ProductCategory.create!(name: 'Bebidas')
 
     ProductType.create!( 
       name: 'Vinho Tinto Miolo', height: 30, width: 10, length: 10,
-      weight: 800, supplier: supplier
+      weight: 800, supplier: supplier, product_category: cat
     )
 
     visit root_path
@@ -30,6 +31,7 @@ describe 'User tries to edit ProductType details' do
     expect(page).to have_field 'Largura'
     expect(page).to have_field 'Profundidade' 
     expect(page).to have_field 'Fornecedor' 
+    expect(page).to have_field 'Categoria' 
     expect(page).to have_button 'Salvar'
   end
 
@@ -43,9 +45,13 @@ describe 'User tries to edit ProductType details' do
       company_name: 'Geek fornecimentos SA', cnpj: '12345678901234',
       email: 'geekceramicas@fornecimentos.com' 
     )
+    cat = ProductCategory.create!(name: 'Bebidas')
+
+    cat = ProductCategory.create!(name: 'Utensílios de cozinha')
+
     ProductType.create!( 
       name: 'Vinho Tinto Miolo', height: 30, width: 10, length: 10,
-      weight: 800, supplier: supplier
+      weight: 800, supplier: supplier, product_category: cat
     )
 
     visit root_path
@@ -60,6 +66,7 @@ describe 'User tries to edit ProductType details' do
     fill_in 'Largura', with: '11'
     fill_in 'Profundidade', with: '12'
     select 'Cerâmicas Geek', from: 'Fornecedor'
+    select 'Utensílios de cozinha', from: 'Categoria'
     click_on 'Salvar'
 
     expect(page).to have_content('Modelo de produto atualizado com sucesso')
@@ -67,10 +74,11 @@ describe 'User tries to edit ProductType details' do
     expect(page).to have_content('801 gramas')
     expect(page).to have_content('Dimensões: 31 x 11 x 12')
     expect(page).to have_content('Fornecedor: Cerâmicas Geek')
+    expect(page).to have_content('Categoria: Utensílios de cozinha')
     
   end
 
-  it 'successfully' do
+  it 'and it fails' do
     supplier = Supplier.create!( 
       trading_name: 'Vinícola Miolo', company_name: 'Miolo Fábrica de bebidas LTDA',
       cnpj: '51905325000154', address: 'Avenida Cabernet, 100',
@@ -80,9 +88,12 @@ describe 'User tries to edit ProductType details' do
       company_name: 'Geek fornecimentos SA', cnpj: '12345678901234',
       email: 'geekceramicas@fornecimentos.com' 
     )
+
+    cat = ProductCategory.create!(name: 'Bebidas')
+
     ProductType.create!( 
       name: 'Vinho Tinto Miolo', height: 30, width: 10, length: 10,
-      weight: 800, supplier: supplier
+      weight: 800, supplier: supplier, product_category: cat
     )
 
     visit root_path
@@ -97,6 +108,7 @@ describe 'User tries to edit ProductType details' do
     fill_in 'Largura', with: '0'
     fill_in 'Profundidade', with: '-12'
     select 'Cerâmicas Geek', from: 'Fornecedor'
+    select 'Bebidas', from: 'Categoria'
     click_on 'Salvar'
 
     expect(page).to have_content('Não foi possível atualizar o modelo de produto')

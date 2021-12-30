@@ -11,6 +11,8 @@ describe 'User register a product type' do
       company_name: 'Esporte roupas SA', cnpj: '12341234567890',
       email: 'golcamisas@fornecimentos.com' 
     )
+    ProductCategory.create!(name: 'Canecas')
+    ProductCategory.create!(name: 'Camisetas')
 
     visit root_path
     click_on 'Cadastrar modelo de produto'
@@ -20,6 +22,7 @@ describe 'User register a product type' do
     fill_in 'Largura', with: 8
     fill_in 'Profundidade', with: 14
     select 'Cerâmicas Geek', from: 'Fornecedor'
+    select 'Canecas', from: 'Categoria'
     click_on 'Salvar'
     
     expect(page).to have_content 'Modelo de produto registrado com sucesso'

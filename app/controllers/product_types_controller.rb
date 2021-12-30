@@ -7,14 +7,16 @@ class ProductTypesController < ApplicationController
   def new
    @product_type = ProductType.new
    @suppliers = Supplier.all
+   @product_categories = ProductCategory.all
   end
 
   def create
     @suppliers = Supplier.all
+    @product_categories = ProductCategory.all
 
     product_type_params = params.require(:product_type).permit(
       :name, :sku, :weight,
-      :length, :height, :width, :supplier_id 
+      :length, :height, :width, :supplier_id, :product_category_id 
     )
     @product_type = ProductType.new(product_type_params)
     
@@ -30,14 +32,16 @@ class ProductTypesController < ApplicationController
     id = params[:id]
     @product_type = ProductType.find(id)
     @suppliers = Supplier.all
+    @product_categories = ProductCategory.all
   end
 
   def update
     @suppliers = Supplier.all
+    @product_categories = ProductCategory.all
     id = params[:id]
 
     product_type_params = params.require(:product_type).permit(
-      :name, :weight, :length, :height, :width, :supplier_id 
+      :name, :weight, :length, :height, :width, :supplier_id, :product_category_id 
     )
 
     @product_type = ProductType.find(id)

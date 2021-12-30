@@ -7,21 +7,24 @@ describe 'User registers a bundle' do
       cnpj: '51905325000154', address: 'Avenida Cabernet, 100',
       email: 'contato@miolovinhos.com', telephone: '71 1234-5678' 
     )
+
+    cat = ProductCategory.create!(name: 'Bebidas e utensílios')
+
     ProductType.create!( 
       name: 'Vinho Tinto Miolo', height: 30, width: 10, length: 10,
-      weight: 800, supplier: supplier
+      weight: 800, supplier: supplier, product_category: cat
     )
     ProductType.create!( 
       name: 'Vinho Rose Miolo', height: 30, width: 10, length: 10,
-      weight: 800, supplier: supplier
+      weight: 800, supplier: supplier, product_category: cat
     )
     ProductType.create!( 
       name: 'Vinho Branco Miolo', height: 30, width: 10, length: 10,
-      weight: 800, supplier: supplier
+      weight: 800, supplier: supplier, product_category: cat
     )
     ProductType.create!( 
       name: 'Taça para vinho', height: 12, width: 10, length: 10,
-      weight: 50, supplier: supplier
+      weight: 50, supplier: supplier, product_category: cat
     )
 
     visit root_path

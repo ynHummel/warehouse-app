@@ -34,5 +34,9 @@
     <%= f.label :supplier_id, 'Fornecedor' %>
     <%= f.collection_select :supplier_id, @suppliers, :id, :trading_name, { include_blank: true } %>
   </div>
+   <div>
+    <%= f.label :product_category_id, 'Categoria' %>
+    <%= f.collection_select :product_category_id, @product_categories, :id, :name, { include_blank: true } %>
+  </div>
   <%= f.submit 'Salvar' %>
 <% end %>

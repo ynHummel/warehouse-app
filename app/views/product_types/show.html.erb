@@ -6,7 +6,9 @@
   <dt>Dimensões:</dt>
   <dd><%= @product_type.dimensions %></dd>
   <dt>Fornecedor:</dt>
-  <dd><%= @product_type.supplier.trading_name %></dd>
+  <dd><%= @product_type.supplier.trading_name if @product_type.supplier %></dd>
+  <dt>Categoria:</dt>
+  <dd><%= @product_type.product_category.name if @product_type.product_category %></dd>
 </dl>
 
 <%= link_to 'Voltar', @product_type.supplier %> |
