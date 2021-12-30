@@ -1,0 +1,9 @@
+<h1>Cadastro de categorias de produto</h1>
+
+<%= form_with model: @product_category do |f| %>
+  <div>
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name %>
+  </div>
+  <%= f.submit 'Salvar' %>
+<% end %>

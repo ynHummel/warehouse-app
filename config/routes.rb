@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :product_types, only:[:show, :new, :create, :edit, :update]
 
   resources :product_bundles, only: [:show, :new, :create]
+
+  resources :product_categories, only: [:new, :create]
 end

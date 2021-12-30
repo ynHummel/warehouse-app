@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_23_023329) do
+ActiveRecord::Schema.define(version: 2021_12_29_173157) do
 
   create_table "product_bundle_items", force: :cascade do |t|
     t.integer "product_type_id", null: false
@@ -24,6 +24,12 @@ ActiveRecord::Schema.define(version: 2021_12_23_023329) do
   create_table "product_bundles", force: :cascade do |t|
     t.string "name"
     t.string "sku"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "product_categories", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

@@ -108,8 +108,6 @@ describe 'User tries to edit ProductType details' do
     expect(page).not_to have_content('Modelo de produto atualizado com sucesso')
     expect(page).not_to have_content('-801 gramas')
     expect(page).not_to have_content('Dimensões:  x 01 x -12')
-
-
     
   end
 
