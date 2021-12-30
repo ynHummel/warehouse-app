@@ -11,5 +11,5 @@ Rails.application.routes.draw do
 
   resources :product_bundles, only: [:show, :new, :create]
 
-  resources :product_categories, only: [:new, :create]
+  resources :product_categories, only: [:index, :show, :new, :create]
 end

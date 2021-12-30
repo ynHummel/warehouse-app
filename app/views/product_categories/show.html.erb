@@ -1,0 +1,22 @@
+<h1> <%= @product_category.name %> </h1>
+
+<h2> Produtos nessa categoria:</h2>
+
+<% if @product_category.product_types.empty? %>
+  <p>Não existem produtos nessa categoria</p>
+<% else %>
+
+  <table>
+    <tr>
+      <th>Produto</th>
+      <th>SKU</th>
+    </tr>
+    <% @product_category.product_types.each do |p| %>
+      <tr>
+        <td> <%= link_to p.name, product_type_path(p.id) %></td>
+        <td><%= p.sku %></td>
+      </tr>
+    <% end %>
+  </table>
+<% end  %>
+

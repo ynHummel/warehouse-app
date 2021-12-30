@@ -4,6 +4,7 @@ describe 'User register a product category' do
   it 'successfully' do
 
     visit root_path
+    click_on 'Categorias'
     click_on 'Cadastrar categoria de produtos'
 
     fill_in 'Nome', with: 'Notebooks'
@@ -16,6 +17,7 @@ describe 'User register a product category' do
   it "and don't provide a name" do
 
     visit root_path
+    click_on 'Categorias'
     click_on 'Cadastrar categoria de produtos'
     click_on 'Salvar'
 
@@ -27,6 +29,7 @@ describe 'User register a product category' do
     ProductCategory.create!(name: 'Notebooks')
 
     visit root_path
+    click_on 'Categorias'
     click_on 'Cadastrar categoria de produtos'
     fill_in 'Nome', with: 'Notebooks'
     click_on 'Salvar'

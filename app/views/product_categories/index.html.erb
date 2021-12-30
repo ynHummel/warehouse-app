@@ -1,0 +1,15 @@
+<h1>Categorias de produtos</h1>
+
+<%= link_to 'Cadastrar categoria de produtos', new_product_category_path %>
+
+<% if @product_categories.empty? %>
+  <p>Nenhuma categoria cadastrada</p>
+<% else %>
+
+  <% @product_categories.each do |cat| %>
+    <div>
+      <%= link_to cat.name, product_category_path(cat.id) %>
+    </div>
+  <% end %>
+
+<% end %>

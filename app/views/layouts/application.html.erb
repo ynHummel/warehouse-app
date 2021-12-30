@@ -15,6 +15,7 @@
       <nav>
         <%= link_to 'Início', root_path %> |
         <%= link_to 'Fornecedores', suppliers_path %> |
+        <%= link_to 'Categorias', product_categories_path %> |
         
         <% if user_signed_in? %>
           <span> Olá <%= current_user.email %> </span>
