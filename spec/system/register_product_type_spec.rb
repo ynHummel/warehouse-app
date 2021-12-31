@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'User register a product type' do
   it 'successfully' do
+    user = User.create!(email: 'yuri@email.com', password:'12345678')
+    login_as(user, :scope => :user)
+
     Supplier.create!(trading_name: 'Cerâmicas Geek', 
       company_name: 'Geek fornecimentos SA', cnpj: '12345678901234',
       email: 'geekceramicas@fornecimentos.com' 
@@ -34,6 +37,9 @@ describe 'User register a product type' do
   end
 
   it 'with obligatory information at fault' do
+    user = User.create!(email: 'yuri@email.com', password:'12345678')
+    login_as(user, :scope => :user)
+
     Supplier.create!(trading_name: 'Cerâmicas Geek', 
       company_name: 'Geek fornecimentos SA', cnpj: '12345678901234',
       email: 'geekceramicas@fornecimentos.com' 
@@ -56,4 +62,5 @@ describe 'User register a product type' do
     expect(page).to have_content 'Profundidade não pode ficar em branco'
     expect(page).to have_content 'Fornecedor é obrigatório(a)'
   end
+  
 end

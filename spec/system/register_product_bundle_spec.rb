@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 describe 'User registers a bundle' do
+
   it 'successfully' do
+    user = User.create!(email: 'yuri@email.com', password:'12345678')
+    login_as(user, :scope => :user)
+
     supplier = Supplier.create!( 
       trading_name: 'Vinícola Miolo', company_name: 'Miolo Fábrica de bebidas LTDA',
       cnpj: '51905325000154', address: 'Avenida Cabernet, 100',

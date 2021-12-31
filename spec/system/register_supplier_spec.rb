@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 describe 'User tries to register a supplier' do
+
   it 'from the homepage' do
+    user = User.create!(email: 'yuri@email.com', password:'12345678')
+    login_as(user, :scope => :user)
+
     visit root_path
     click_on 'Fornecedores'
     click_on 'Cadastrar fornecedor'
@@ -16,6 +20,9 @@ describe 'User tries to register a supplier' do
   end
 
   it 'successfully' do
+    user = User.create!(email: 'yuri@email.com', password:'12345678')
+    login_as(user, :scope => :user)
+
     visit root_path
     click_on 'Fornecedores'
     click_on 'Cadastrar fornecedor'
@@ -37,6 +44,9 @@ describe 'User tries to register a supplier' do
   end
 
   it 'with obligatory information at fault' do
+    user = User.create!(email: 'yuri@email.com', password:'12345678')
+    login_as(user, :scope => :user)
+
     visit root_path
     click_on 'Fornecedores'
     click_on 'Cadastrar fornecedor'
@@ -49,7 +59,5 @@ describe 'User tries to register a supplier' do
     expect(page).to have_content('CNPJ não pode ficar em branco')
     expect(page).to have_content('E-mail não pode ficar em branco')
   end
-
-  
 
 end

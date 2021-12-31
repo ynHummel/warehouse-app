@@ -1,4 +1,6 @@
 class ProductTypesController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
+
   def show
     id = params[:id]
     @product_type = ProductType.find(id)

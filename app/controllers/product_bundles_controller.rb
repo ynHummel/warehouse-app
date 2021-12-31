@@ -1,5 +1,6 @@
 class ProductBundlesController < ApplicationController
-
+  before_action :authenticate_user!, only: [:new, :create]
+  
   def show
     @product_bundle = ProductBundle.find(params[:id])
   end
