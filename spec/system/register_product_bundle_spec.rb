@@ -20,11 +20,11 @@ describe 'User registers a bundle' do
     )
     ProductType.create!( 
       name: 'Vinho Rose Miolo', height: 30, width: 10, length: 10,
-      weight: 800, supplier: supplier, product_category: cat
+      weight: 801, supplier: supplier, product_category: cat
     )
     ProductType.create!( 
       name: 'Vinho Branco Miolo', height: 30, width: 10, length: 10,
-      weight: 800, supplier: supplier, product_category: cat
+      weight: 802, supplier: supplier, product_category: cat
     )
     ProductType.create!( 
       name: 'Taça para vinho', height: 12, width: 10, length: 10,
@@ -39,8 +39,15 @@ describe 'User registers a bundle' do
     click_on 'Salvar'
 
     expect(page).to have_content 'Kit Degustação Miolo'
+    expect(page).to have_content 'Peso do kit:'
+    expect(page).to have_content '1602'
+    expect(page).to have_content 'Produtos'
+    expect(page).to have_content 'Nome'
+    expect(page).to have_content 'Peso'
     expect(page).to have_content 'Vinho Tinto Miolo'
+    expect(page).to have_content '800'
     expect(page).to have_content 'Vinho Branco Miolo'
+    expect(page).to have_content '802'
     expect(page).not_to have_content 'Vinho Rose Miolo'
   end
 

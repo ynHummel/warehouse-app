@@ -1,6 +1,22 @@
 <h1> <%= @product_bundle.name %></h1>
 <h3>SKU: <%= @product_bundle.sku %></h3>
+<p>
+Peso do kit:
+<%= @product_bundle.weight %>
+</p>
 
-<%  @product_bundle.product_types.each do |p| %>
-<%= p.name %>
-<% end %>
+<table>
+  <caption>Produtos</caption>
+  <tr>
+    <th>Nome</th>
+    <th>Peso</th>  
+  </tr>
+  <%  @product_bundle.product_types.each do |p| %>
+    <tr>
+      <td><%= p.name %></td>
+      <td><%= p.weight %></td>
+    </tr>
+  <% end %>
+</table>
+
+

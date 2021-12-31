@@ -6,8 +6,7 @@ class ProductCategoriesController < ApplicationController
   end
 
   def show
-    id = params[:id]
-    @product_category = ProductCategory.find(id)
+    @product_category = ProductCategory.find(params[:id])
   end
 
   def new
