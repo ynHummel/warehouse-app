@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'User tries to edit Warehouse details' do
   it 'and sees the update form' do
+    user = User.create!(email: 'yuri@email.com', password:'12345678')
+    login_as(user, :scope => :user)
+
     Warehouse.create!( 
       name: 'Guarulhos', code: 'GRU', description: 'teste',
       address: 'Av teste', city: 'São Paulo', state: 'SP',
@@ -25,6 +28,9 @@ describe 'User tries to edit Warehouse details' do
   end
 
   it 'successfully' do
+    user = User.create!(email: 'yuri@email.com', password:'12345678')
+    login_as(user, :scope => :user)
+    
     Warehouse.create!( 
       name: 'Guarulhos', code: 'GRU', description: 'teste',
       address: 'Av teste', city: 'São Paulo', state: 'SP',

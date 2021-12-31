@@ -2,6 +2,9 @@ require 'rails_helper'
 
 describe 'User tries to edit ProductType details' do
   it 'and sees the update form' do
+    user = User.create!(email: 'yuri@email.com', password:'12345678')
+    login_as(user, :scope => :user)
+
     supplier = Supplier.create!( 
       trading_name: 'Vinícola Miolo', company_name: 'Miolo Fábrica de bebidas LTDA',
       cnpj: '51905325000154', address: 'Avenida Cabernet, 100',
@@ -36,6 +39,9 @@ describe 'User tries to edit ProductType details' do
   end
 
   it 'successfully' do
+    user = User.create!(email: 'yuri@email.com', password:'12345678')
+    login_as(user, :scope => :user)
+
     supplier = Supplier.create!( 
       trading_name: 'Vinícola Miolo', company_name: 'Miolo Fábrica de bebidas LTDA',
       cnpj: '51905325000154', address: 'Avenida Cabernet, 100',
@@ -79,6 +85,9 @@ describe 'User tries to edit ProductType details' do
   end
 
   it 'and it fails' do
+    user = User.create!(email: 'yuri@email.com', password:'12345678')
+    login_as(user, :scope => :user)
+    
     supplier = Supplier.create!( 
       trading_name: 'Vinícola Miolo', company_name: 'Miolo Fábrica de bebidas LTDA',
       cnpj: '51905325000154', address: 'Avenida Cabernet, 100',
