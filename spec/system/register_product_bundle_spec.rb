@@ -4,16 +4,12 @@ describe 'User registers a bundle' do
 
   it 'successfully' do
     user = User.create!(email: 'yuri@email.com', password:'12345678')
-    login_as(user, :scope => :user)
-
     supplier = Supplier.create!( 
       trading_name: 'Vinícola Miolo', company_name: 'Miolo Fábrica de bebidas LTDA',
       cnpj: '51905325000154', address: 'Avenida Cabernet, 100',
       email: 'contato@miolovinhos.com', telephone: '71 1234-5678' 
     )
-
     cat = ProductCategory.create!(name: 'Bebidas e utensílios')
-
     ProductType.create!( 
       name: 'Vinho Tinto Miolo', height: 30, width: 10, length: 10,
       weight: 800, supplier: supplier, product_category: cat
@@ -30,7 +26,8 @@ describe 'User registers a bundle' do
       name: 'Taça para vinho', height: 12, width: 10, length: 10,
       weight: 50, supplier: supplier, product_category: cat
     )
-
+    
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Criar novo kit de produtos'
     fill_in 'Nome', with: 'Kit Degustação Miolo'

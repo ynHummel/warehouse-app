@@ -7,7 +7,7 @@ class ProductBundle < ApplicationRecord
   private
   def generate_sku
     loop do
-      new_sku = SecureRandom.hex(10).upcase
+      new_sku = SecureRandom.alphanumeric(20).upcase
       if !ProductType.where(sku: new_sku).exists?
         self.sku = "K#{new_sku}"
         break

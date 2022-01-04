@@ -15,8 +15,8 @@ describe 'User tries to register a warehouse' do
 
   it 'from the homepage' do
     user = User.create!(email: 'yuri@email.com', password:'12345678')
-    login_as(user, :scope => :user)
     
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Cadastrar novo galpão'
 
@@ -34,8 +34,8 @@ describe 'User tries to register a warehouse' do
 
   it 'successfully' do
     user = User.create!(email: 'yuri@email.com', password:'12345678')
+    
     login_as(user, :scope => :user)
-
     visit root_path
     click_on 'Cadastrar novo galpão'
     fill_in 'Nome', with: 'Juiz de Fora'
@@ -62,12 +62,11 @@ describe 'User tries to register a warehouse' do
 
   it 'and it fails' do
     user = User.create!(email: 'yuri@email.com', password:'12345678')
+    
     login_as(user, :scope => :user)
-
     visit root_path
     click_on 'Cadastrar novo galpão'
     click_on 'Salvar'
-    
 
     expect(page).to_not have_content('Galpão registrado com sucesso')
     expect(page).to have_content('Não foi possível salvar o galpão')

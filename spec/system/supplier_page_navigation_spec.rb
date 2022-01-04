@@ -14,7 +14,6 @@ describe 'Visitor opens the supplier page' do
       cnpj: '12345678901234', address: 'Av dos Produtos',
       email: 'fantasyprodutos@fornecimentos.com', telephone: '00000000' 
     )
-
     Supplier.create!( 
       trading_name: 'Real Supplier', company_name: 'RS fornecimentos SA',
       cnpj: '12341234567890', address: 'Av dos Serviços',
@@ -26,8 +25,6 @@ describe 'Visitor opens the supplier page' do
     
     expect(page).to have_content('Fantasy Supplier')
     expect(page).to have_content('FS fornecimentos SA')
-   
-    
     expect(page).to have_content('Real Supplier')
     expect(page).to have_content('RS fornecimentos SA')
     

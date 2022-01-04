@@ -26,9 +26,7 @@ describe 'User sees supplier details' do
       cnpj: '12345678901234', address: 'Av dos Produtos',
       email: 'fantasyprodutos@fornecimentos.com', telephone: '00000000' 
     )
-
     cat = ProductCategory.create!(name: 'Categoria')
-
     p1 = ProductType.create!( 
       name: 'Caneca Star Wars', height: 14, width: 10, length: 8,
       weight: 300, supplier: supplier, product_category: cat

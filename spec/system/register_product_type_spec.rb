@@ -3,20 +3,20 @@ require 'rails_helper'
 describe 'User register a product type' do
   it 'successfully' do
     user = User.create!(email: 'yuri@email.com', password:'12345678')
-    login_as(user, :scope => :user)
-
-    Supplier.create!(trading_name: 'Cerâmicas Geek', 
+    Supplier.create!(
+      trading_name: 'Cerâmicas Geek', 
       company_name: 'Geek fornecimentos SA', cnpj: '12345678901234',
       email: 'geekceramicas@fornecimentos.com' 
     )
-
-    Supplier.create!(trading_name: 'Fábrica de Camisetas', 
+    Supplier.create!(
+      trading_name: 'Fábrica de Camisetas', 
       company_name: 'Esporte roupas SA', cnpj: '12341234567890',
       email: 'golcamisas@fornecimentos.com' 
     )
     ProductCategory.create!(name: 'Canecas')
     ProductCategory.create!(name: 'Camisetas')
-
+    
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Cadastrar modelo de produto'
     fill_in 'Nome', with: 'Caneca Star Wars'
@@ -38,8 +38,7 @@ describe 'User register a product type' do
 
   it 'with obligatory information at fault' do
     user = User.create!(email: 'yuri@email.com', password:'12345678')
-    login_as(user, :scope => :user)
-
+    
     Supplier.create!(trading_name: 'Cerâmicas Geek', 
       company_name: 'Geek fornecimentos SA', cnpj: '12345678901234',
       email: 'geekceramicas@fornecimentos.com' 
@@ -48,7 +47,8 @@ describe 'User register a product type' do
       company_name: 'Esporte roupas SA', cnpj: '12341234567890',
       email: 'golcamisas@fornecimentos.com' 
     )
-
+    
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Cadastrar modelo de produto'
     click_on 'Salvar'

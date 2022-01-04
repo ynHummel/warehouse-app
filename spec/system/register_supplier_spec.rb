@@ -4,8 +4,8 @@ describe 'User tries to register a supplier' do
 
   it 'from the homepage' do
     user = User.create!(email: 'yuri@email.com', password:'12345678')
+    
     login_as(user, :scope => :user)
-
     visit root_path
     click_on 'Fornecedores'
     click_on 'Cadastrar fornecedor'
@@ -21,8 +21,8 @@ describe 'User tries to register a supplier' do
 
   it 'successfully' do
     user = User.create!(email: 'yuri@email.com', password:'12345678')
+    
     login_as(user, :scope => :user)
-
     visit root_path
     click_on 'Fornecedores'
     click_on 'Cadastrar fornecedor'
@@ -45,8 +45,8 @@ describe 'User tries to register a supplier' do
 
   it 'with obligatory information at fault' do
     user = User.create!(email: 'yuri@email.com', password:'12345678')
+    
     login_as(user, :scope => :user)
-
     visit root_path
     click_on 'Fornecedores'
     click_on 'Cadastrar fornecedor'

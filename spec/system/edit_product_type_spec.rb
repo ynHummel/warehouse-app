@@ -3,8 +3,6 @@ require 'rails_helper'
 describe 'User tries to edit ProductType details' do
   it 'and sees the update form' do
     user = User.create!(email: 'yuri@email.com', password:'12345678')
-    login_as(user, :scope => :user)
-
     supplier = Supplier.create!( 
       trading_name: 'Vinícola Miolo', company_name: 'Miolo Fábrica de bebidas LTDA',
       cnpj: '51905325000154', address: 'Avenida Cabernet, 100',
@@ -15,12 +13,13 @@ describe 'User tries to edit ProductType details' do
       email: 'geekceramicas@fornecimentos.com' 
     )
     cat = ProductCategory.create!(name: 'Bebidas')
-
+    
     ProductType.create!( 
       name: 'Vinho Tinto Miolo', height: 30, width: 10, length: 10,
       weight: 800, supplier: supplier, product_category: cat
     )
-
+    
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Fornecedores'
     click_on 'Vinícola Miolo'
@@ -40,8 +39,6 @@ describe 'User tries to edit ProductType details' do
 
   it 'successfully' do
     user = User.create!(email: 'yuri@email.com', password:'12345678')
-    login_as(user, :scope => :user)
-
     supplier = Supplier.create!( 
       trading_name: 'Vinícola Miolo', company_name: 'Miolo Fábrica de bebidas LTDA',
       cnpj: '51905325000154', address: 'Avenida Cabernet, 100',
@@ -52,14 +49,15 @@ describe 'User tries to edit ProductType details' do
       email: 'geekceramicas@fornecimentos.com' 
     )
     cat = ProductCategory.create!(name: 'Bebidas')
-
+    
     cat = ProductCategory.create!(name: 'Utensílios de cozinha')
-
+    
     ProductType.create!( 
       name: 'Vinho Tinto Miolo', height: 30, width: 10, length: 10,
       weight: 800, supplier: supplier, product_category: cat
     )
-
+    
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Fornecedores'
     click_on 'Vinícola Miolo'
@@ -86,8 +84,6 @@ describe 'User tries to edit ProductType details' do
 
   it 'and it fails' do
     user = User.create!(email: 'yuri@email.com', password:'12345678')
-    login_as(user, :scope => :user)
-    
     supplier = Supplier.create!( 
       trading_name: 'Vinícola Miolo', company_name: 'Miolo Fábrica de bebidas LTDA',
       cnpj: '51905325000154', address: 'Avenida Cabernet, 100',
@@ -97,14 +93,15 @@ describe 'User tries to edit ProductType details' do
       company_name: 'Geek fornecimentos SA', cnpj: '12345678901234',
       email: 'geekceramicas@fornecimentos.com' 
     )
-
+    
     cat = ProductCategory.create!(name: 'Bebidas')
-
+    
     ProductType.create!( 
       name: 'Vinho Tinto Miolo', height: 30, width: 10, length: 10,
       weight: 800, supplier: supplier, product_category: cat
     )
-
+    
+    login_as(user, :scope => :user)
     visit root_path
     click_on 'Fornecedores'
     click_on 'Vinícola Miolo'

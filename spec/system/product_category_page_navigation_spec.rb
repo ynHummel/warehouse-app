@@ -28,13 +28,11 @@ describe 'User access the Product Categories page' do
 
     cat = ProductCategory.create!(name: 'Utensílios de cozinha')
     cat1 = ProductCategory.create!(name: 'Bebidas')
-
     supplier = Supplier.create!( 
       trading_name: 'Vinícola Miolo', company_name: 'Miolo Fábrica de bebidas LTDA',
       cnpj: '51905325000154', address: 'Avenida Cabernet, 100',
       email: 'contato@miolovinhos.com', telephone: '71 1234-5678' 
     )
-
     p1 = ProductType.create!( 
       name: 'Vinho Tinto Miolo', height: 30, width: 10, length: 10,
       weight: 800, supplier: supplier, product_category: cat1
