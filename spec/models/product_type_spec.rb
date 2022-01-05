@@ -10,8 +10,7 @@ RSpec.describe ProductType, type: :model do
   end
 
   context 'SKU' do
-
-    it 'should generate an SKU' do 
+    it 'should generate a SKU' do 
       cat = ProductCategory.create!(name: 'Monitores')
       supp1 = Supplier.create!( 
         trading_name: 'Fantasy Supplier', company_name: 'FS fornecimentos SA',
@@ -47,7 +46,6 @@ RSpec.describe ProductType, type: :model do
     end
 
     it 'should not update sku' do
-      # allow(SecureRandom).to receive(:alphanumeric).with(20).and_return 'KMBHINRS35JORIK7B75U'
       cat = ProductCategory.create!(name: 'Monitores')
       supp1 = Supplier.create!( 
         trading_name: 'Fantasy Supplier', company_name: 'FS fornecimentos SA',

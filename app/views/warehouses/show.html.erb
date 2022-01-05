@@ -1,5 +1,5 @@
 <h1> <%= @warehouse.name %> </h1>
-<h3><%= @warehouse.code %></h3>
+<h2><%= @warehouse.code %></h2>
 <dl>
   <dt>Descrição</dt>
   <dd><%= @warehouse.description %></dd>
@@ -12,6 +12,30 @@
   <dt>Área Útil:</dt>
   <dd><%= @warehouse.useful_area %> m2</dd>
 </dl>
+
+<% unless @items.empty? %>
+  <h2>Estoque</h2>
+  <% @items.each_pair do |product_type, quantity| %>
+    <div id="product-<%= product_type.id %>">
+      <%= product_type.name %> | <%= quantity %> unidades
+    </div>
+  <% end %>
+<% end %>
+
+<h2>Entrada de Item</h2>
+<%= form_with(url: product_entry_warehouse_path(@warehouse.id) ) do |f| %>
+  <div>
+    <%= f.label :quantity, 'Quantidade' %>
+    <%= f.number_field :quantity %>
+  </div>
+  <div>
+    <%= f.label :product_type_id, 'Produto' %>
+    <%= f.collection_select :product_type_id, @product_types, :id, :name %>
+  </div>
+  <div>
+    <%= f.submit 'Confirmar' %>
+  </div>
+<% end %>
 
 <%= link_to 'Voltar', root_path %> |
 <%= link_to 'Editar', edit_warehouse_path %> 

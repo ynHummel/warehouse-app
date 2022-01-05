@@ -3,6 +3,8 @@ class WarehousesController < ApplicationController
 
   def show
     @warehouse = Warehouse.find(id = params[:id])
+    @product_types = ProductType.all
+    @items = @warehouse.warehouse_items.group(:product_type).count
   end
 
   def new
@@ -33,6 +35,21 @@ class WarehousesController < ApplicationController
       flash.now[:alert] = 'Não foi possível salvar o galpão'
       render 'edit'
     end
+  end
+
+  def product_entry
+    quantity = params[:quantity].to_i
+    warehouse_id = params[:id]
+    product_item_id = params[:product_type_id]
+
+    w = Warehouse.find(warehouse_id)
+    pt = ProductType.find(product_item_id)
+
+    quantity.times do
+      WarehouseItem.create(warehouse: w, product_type: pt)
+    end
+
+    redirect_to w
   end
 
   private

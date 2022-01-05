@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_31_150319) do
+ActiveRecord::Schema.define(version: 2022_01_04_151656) do
 
   create_table "product_bundle_items", force: :cascade do |t|
     t.integer "product_type_id", null: false
@@ -73,6 +73,16 @@ ActiveRecord::Schema.define(version: 2021_12_31_150319) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "warehouse_items", force: :cascade do |t|
+    t.integer "warehouse_id", null: false
+    t.integer "product_type_id", null: false
+    t.string "id_code"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["product_type_id"], name: "index_warehouse_items_on_product_type_id"
+    t.index ["warehouse_id"], name: "index_warehouse_items_on_warehouse_id"
+  end
+
   create_table "warehouses", force: :cascade do |t|
     t.string "name"
     t.string "code"
@@ -91,4 +101,6 @@ ActiveRecord::Schema.define(version: 2021_12_31_150319) do
   add_foreign_key "product_bundle_items", "product_types"
   add_foreign_key "product_types", "product_categories"
   add_foreign_key "product_types", "suppliers"
+  add_foreign_key "warehouse_items", "product_types"
+  add_foreign_key "warehouse_items", "warehouses"
 end
