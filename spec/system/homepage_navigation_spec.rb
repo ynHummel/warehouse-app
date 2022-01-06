@@ -5,7 +5,7 @@ describe 'Visitor opens the homepage' do
   it 'successfully' do
     visit root_path
     expect(page).to have_css('h1', text: 'WareHouse App')
-    expect(page).to have_css('h3', text: 'Boas vindas ao sistema de gestão de estoques')
+    expect(page).to have_css('h2', text: 'Boas vindas ao sistema de gestão de estoques')
   end
 
   it 'and sees all registered warehouses' do

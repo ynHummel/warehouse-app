@@ -1,16 +1,20 @@
 <h1>WareHouse App</h1>
 
-<h3>Boas vindas ao sistema de gestão de estoques</h3>
+<h2>Boas vindas ao sistema de gestão de estoques</h2>
 
+
+<h2>Galpões cadastrados:</h2>
 <% if user_signed_in? %>
   <%= link_to 'Cadastrar novo galpão', new_warehouse_path  %>
 <% end %>
 
-<h3>Galpões cadastrados:</h3>
 <% @warehouses.each do |w| %>
-  <%= link_to w.name, warehouse_path(w.id) %>
-  <%= w.code %>
+  <p>
+    <%= link_to w.name, warehouse_path(w.id) %>
+    <%= w.code %>
+  </p>
 <% end %>
+
 
 <% if user_signed_in? %>
   <h2>Buscar galpões</h2>
@@ -20,6 +24,8 @@
     <%= submit_tag 'Pesquisar' %>
   <% end %>
 <% end %>
+
+<hr>
 
 <p><%= link_to 'Cadastrar modelo de produto', new_product_type_path %></p>
 <p><%= link_to 'Criar novo kit de produtos', new_product_bundle_path %></p>
