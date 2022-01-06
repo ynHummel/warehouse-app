@@ -62,6 +62,7 @@ describe 'Visitor opens the homepage' do
 
   context 'and search for warehouse'do 
     it 'name and city' do
+      user = User.create!(email: 'admin@teste.com', password: 12345678)
       Warehouse.create!( 
         name: 'Guarulhos', code: 'GRU', description: 'teste',
         address: 'Av teste', city: 'São Paulo', state: 'SP',
@@ -78,6 +79,7 @@ describe 'Visitor opens the homepage' do
         postal_code: '00001-000', total_area: 10000, useful_area: 8000 
       )
 
+      login_as(user, :scope => :user)
       visit root_path
       fill_in 'Busca:', with: 'São'
       click_on 'Pesquisar'
@@ -94,6 +96,7 @@ describe 'Visitor opens the homepage' do
     end
     
     it 'code' do
+      user = User.create!(email: 'admin@teste.com', password: 12345678)
       Warehouse.create!( 
         name: 'Guarulhos', code: 'GRU', description: 'teste',
         address: 'Av teste', city: 'São Paulo', state: 'SP',
@@ -105,6 +108,7 @@ describe 'Visitor opens the homepage' do
         postal_code: '00001-000', total_area: 10000, useful_area: 8000 
       )
       
+      login_as(user, :scope => :user)
       visit root_path
       fill_in 'Busca:', with: 'RU'
       click_on 'Pesquisar'
