@@ -1,5 +1,5 @@
 <h1> <%= @product_type.name %> </h1>
-<h3>SKU: <%= @product_type.sku %></h3>
+<h2>SKU: <%= @product_type.sku %></h2>
 <dl>
   <dt>Peso:</dt>
   <dd><%= @product_type.weight %> gramas</dd>
@@ -10,6 +10,13 @@
   <dt>Categoria:</dt>
   <dd><%= @product_type.product_category.name if @product_type.product_category %></dd>
 </dl>
+
+<h2>Disponível nos galpões:</h2>
+<% @items.each_pair do |warehouse, quantity| %>
+  <p>
+    <%= link_to warehouse.name, warehouse_path(warehouse.id) %> - <%= warehouse.code %> | <%= quantity %> unidades 
+  </p>
+<% end %>
 
 <%= link_to 'Voltar', @product_type.supplier %> |
 <%= link_to 'Editar', edit_product_type_path %>

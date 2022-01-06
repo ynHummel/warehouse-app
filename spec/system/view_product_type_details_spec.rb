@@ -25,14 +25,14 @@ describe 'User sees the product type details' do
     click_on 'Caneca Star Wars'
 
     expect(page).to have_css('h1', text: 'Caneca Star Wars')
-    expect(page).to have_css('h3', text: "#{p1.sku}")
+    expect(page).to have_css('h2', text: "#{p1.sku}")
     expect(page).to have_content '300 gramas'
     expect(page).to have_content 'Dimensões: 14 x 10 x 8'
     expect(page).to have_content 'Fornecedor: Fantasy Supplier'
     expect(page).to have_content 'Categoria: Canecas'
 
     expect(page).not_to have_css('h1', text: 'Pelúcia Dumbo')
-    expect(page).not_to have_css('h3', text: "#{p2.sku}")
+    expect(page).not_to have_css('h2', text: "#{p2.sku}")
     expect(page).not_to have_content '400 gramas'
     expect(page).not_to have_content 'Dimensões: 50 x 40 x 20'
     expect(page).not_to have_content 'Categoria: Pelúcias'

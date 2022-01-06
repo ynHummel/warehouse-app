@@ -3,6 +3,7 @@ class ProductTypesController < ApplicationController
 
   def show
     @product_type = ProductType.find(params[:id])
+    @items = @product_type.warehouse_items.group(:warehouse).count
   end
   
   def new
