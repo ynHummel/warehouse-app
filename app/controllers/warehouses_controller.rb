@@ -37,6 +37,13 @@ class WarehousesController < ApplicationController
     end
   end
 
+  def search
+    @warehouses = Warehouse.where(
+      'name like ? OR code like ? OR city like ?',
+      "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%"
+    )
+  end
+
   def product_entry
     quantity = params[:quantity].to_i
     warehouse_id = params[:id]

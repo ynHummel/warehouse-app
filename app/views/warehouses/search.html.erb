@@ -1,0 +1,7 @@
+<h1>Resultados da busca</h1>
+
+<ul>
+<% @warehouses.each do |w| %>
+  <li><%= w.name%> - <%= w.code%>, <%= w.city%></li>
+<% end %>
+</ul>

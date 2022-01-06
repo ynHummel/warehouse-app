@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   get '/new_entry', to: 'entries#new'
 
   resources :warehouses, only: [:show, :new, :create, :edit, :update] do
-    post 'product_entry', on: :member 
+    post 'product_entry', on: :member
+    get 'search', on: :collection, to: 'warehouses#search'
   end
   get '/warehouses', to: redirect('/')
 

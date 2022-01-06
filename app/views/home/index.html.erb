@@ -12,5 +12,12 @@
   <%= w.code %>
 <% end %>
 
+<h2>Buscar galpões</h2>
+<%= form_with url: search_warehouses_path, method: :get do %>
+  <%= label_tag :q, 'Busca:' %>
+  <%= text_field_tag :q %>
+  <%= submit_tag 'Pesquisar' %>
+<% end %>
+
 <p><%= link_to 'Cadastrar modelo de produto', new_product_type_path %></p>
 <p><%= link_to 'Criar novo kit de produtos', new_product_bundle_path %></p>
