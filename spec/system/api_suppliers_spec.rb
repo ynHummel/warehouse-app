@@ -22,6 +22,8 @@ describe 'Supplier API' do
       expect(parsed_response[1]["trading_name"]).to eq 'Canecas e Copos'
       expect(parsed_response[0].keys).not_to include 'created_at'
       expect(parsed_response[0].keys).not_to include 'updated_at'
+      expect(parsed_response[1].keys).not_to include 'created_at'
+      expect(parsed_response[1].keys).not_to include 'updated_at'
     end
 
     it 'empty response' do
@@ -57,8 +59,8 @@ describe 'Supplier API' do
       
       get '/api/v1/suppliers/999'
 
-      parsed_response = JSON.parse(response.body)
       expect(response.status).to eq 404
     end
   end
+  
 end
