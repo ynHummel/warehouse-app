@@ -3,8 +3,6 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
-  get '/new_entry', to: 'entries#new'
-
   resources :warehouses, only: [:show, :new, :create, :edit, :update] do
     post 'product_entry', on: :member
     get 'search', on: :collection, to: 'warehouses#search'
@@ -22,6 +20,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     namespace :v1 do
       resources :warehouses, only: [:index, :show]
+      resources :suppliers, only: [:index, :show]
     end
   end
 
