@@ -7,7 +7,11 @@ class Api::V1::ProductTypesController < Api::V1::ApiController
   def show
     begin
       product_type = ProductType.find(params[:id])
-      render json: product_type.as_json(except: [:created_at, :updated_at]), status: 200
+      render json: product_type.as_json(
+        except: [:created_at, :updated_at],
+        methods: [:dimensions],
+        include: {supplier: {except: [:created_at, :updated_at, :cnpj]}}
+        ), status: 200
     rescue ActiveRecord::RecordNotFound
       render json: '{}', status: 404      
     end

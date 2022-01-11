@@ -60,6 +60,7 @@ describe 'Product Type API' do
       expect(response.status).to eq 200
       expect(parsed_response["name"]).to eq 'Vinho Tinto Miolo'
       expect(parsed_response["weight"]).to eq 800
+      expect(parsed_response.keys).to include 'dimensions'
       expect(parsed_response.keys).not_to include 'created_at'
       expect(parsed_response.keys).not_to include 'updated_at'
     end
