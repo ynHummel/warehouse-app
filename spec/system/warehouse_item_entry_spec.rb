@@ -79,6 +79,7 @@ describe 'User register items entry' do
     click_on 'Fornecedores'
     click_on 'Vinícola Miolo'
     click_on 'Vinho Tinto Miolo'
+
     expect(page).to have_css('h2', text:'Disponível nos galpões:')
     expect(page).to have_content('Guarulhos') 
     expect(page).to have_content('GRU')
