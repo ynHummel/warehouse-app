@@ -70,7 +70,6 @@ describe 'User tries to register a warehouse' do
       expect(page).to have_content('Móveis')
       expect(page).to have_content('Canecas')
       expect(page).not_to have_content('Alimentos')
-
     end
 
     expect(page).to have_content('Galpão registrado com sucesso')
@@ -78,7 +77,6 @@ describe 'User tries to register a warehouse' do
 
   it 'and it fails' do
     user = User.create!(email: 'yuri@email.com', password:'12345678')
-    ProductCategory.create!(name: 'Canecas')
     
     login_as(user, :scope => :user)
     visit root_path
