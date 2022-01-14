@@ -30,10 +30,14 @@ describe 'User tries to register a warehouse' do
     expect(page).to have_field 'Descrição'
     expect(page).to have_field 'Área Total'
     expect(page).to have_field 'Área Útil'
+    expect(page).to have_content 'Categorias'
   end
 
   it 'successfully' do
     user = User.create!(email: 'yuri@email.com', password:'12345678')
+    ProductCategory.create!(name: 'Canecas')
+    ProductCategory.create!(name: 'Móveis')
+    ProductCategory.create!(name: 'Alimentos')
     
     login_as(user, :scope => :user)
     visit root_path
@@ -47,6 +51,10 @@ describe 'User tries to register a warehouse' do
     fill_in 'Descrição', with: 'Um galpão mineiro com pé no Rio'
     fill_in 'Área Total', with: '5000'
     fill_in 'Área Útil', with: '3000'
+    within("div#categories") do
+      check 'Móveis'
+      check 'Canecas'
+    end
     click_on 'Salvar'
 
     expect(page).to have_content('Juiz de Fora')
@@ -57,11 +65,20 @@ describe 'User tries to register a warehouse' do
     expect(page).to have_content('CEP: 36000-000')
     expect(page).to have_content('Área Total: 5000 m2')
     expect(page).to have_content('Área Útil: 3000 m2')
+    within('div#warehouse-categories') do
+      expect(page).to have_content('Categorias Permitidas')
+      expect(page).to have_content('Móveis')
+      expect(page).to have_content('Canecas')
+      expect(page).not_to have_content('Alimentos')
+
+    end
+
     expect(page).to have_content('Galpão registrado com sucesso')
   end
 
   it 'and it fails' do
     user = User.create!(email: 'yuri@email.com', password:'12345678')
+    ProductCategory.create!(name: 'Canecas')
     
     login_as(user, :scope => :user)
     visit root_path

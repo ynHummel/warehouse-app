@@ -9,10 +9,12 @@ class WarehousesController < ApplicationController
 
   def new
     @warehouse = Warehouse.new
+    @categories = ProductCategory.all
   end
 
   def create
     @warehouse = Warehouse.new(warehouse_params)
+    @categories = ProductCategory.all
     
     if @warehouse.save()
       redirect_to warehouse_path(@warehouse.id), notice:'Galpão registrado com sucesso'
@@ -65,7 +67,7 @@ class WarehousesController < ApplicationController
     params.require(:warehouse).permit(
       :name, :code, :address, :state, :city,
       :postal_code, :description, :total_area,
-      :useful_area
+      :useful_area, product_category_ids: []
     )
   end
   
