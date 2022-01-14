@@ -13,6 +13,11 @@ w1 = Warehouse.create!(
   postal_code: '57050-000',
   total_area: 10000, useful_area: 8000
 )
+w2 = Warehouse.create!( 
+  name: 'Guarulhos', code: 'GRU', description: 'teste',
+  address: 'Av teste', city: 'São Paulo', state: 'SP',
+  postal_code: '00000-000', total_area: 10000, useful_area: 8000 
+)
 cat = ProductCategory.create!(name: 'Bebidas e utensílios')
 cat1 = ProductCategory.create!(name: 'Brinquedos')
 supplier = Supplier.create!(
