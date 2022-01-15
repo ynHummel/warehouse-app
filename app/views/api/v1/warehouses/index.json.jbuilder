@@ -1,0 +1,10 @@
+json.array! @warehouses, 
+  :id,
+  :name,
+  :code,
+  :description,
+  :city,
+  :state,
+  :postal_code,
+  :total_area,
+  :useful_area

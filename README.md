@@ -265,7 +265,9 @@ Status: 200 (OK)
     "width": 40,
     "sku": "OE51ZXQU81NVLVLJVWKX",
     "supplier_id": 1,
-    "product_category_id": 2
+    "product_category_id": 2,
+    "dimensions": "50 x 40 x 20"
+    ""supplier": {...}
   }
 ```
 
