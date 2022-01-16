@@ -101,6 +101,92 @@ describe 'Product Type API' do
   end
 
   context 'POST /api/v1/product_types' do
+    it 'successfully' do
+      supp = Supplier.create!(
+        trading_name: 'Samsung', company_name: 'Samsung do BR LTDA',
+        cnpj: '85935972000120', address: 'Av Industrial, 1000, São Paulo',
+        email: 'financeiro@samsung.com.br', telephone: '11 1234-5678'
+      )
+      cat = ProductCategory.create!(name: 'Bebidas e utensílios')
+
+      headers = { "CONTENT_TYPE" => "application/json"}
+      post '/api/v1/product_types', params: "{
+        \"name\": \"Caneca Star Wars\",
+        \"weight\": \"300\",
+        \"length\": \"8\",
+        \"height\": \"14\",
+        \"width\": \"10\",
+        \"supplier_id\": \"#{supp.id}\",
+        \"product_category_id\": \"#{cat.id}\"
+      }", headers: headers
+
+      
+      expect(response.status).to eq 201
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response["name"]).to eq 'Caneca Star Wars'
+      expect(parsed_response["weight"]).to eq 300
+      expect(parsed_response["height"]).to eq 14
+      expect(parsed_response["length"]).to eq 8
+      expect(parsed_response["width"]).to eq 10
+      expect(parsed_response["supplier_id"]).to eq 1
+      expect(parsed_response["product_category_id"]).to eq 1
+      expect(parsed_response.keys).not_to include 'created_at'
+      expect(parsed_response.keys).not_to include 'updated_at'
+
+    end
+
+    it 'has required field' do
+      supp = Supplier.create!(
+        trading_name: 'Samsung', company_name: 'Samsung do BR LTDA',
+        cnpj: '85935972000120', address: 'Av Industrial, 1000, São Paulo',
+        email: 'financeiro@samsung.com.br', telephone: '11 1234-5678'
+      )
+      cat = ProductCategory.create!(name: 'Bebidas e utensílios')
+
+      headers = { "CONTENT_TYPE" => "application/json"}
+      post '/api/v1/product_types', params: "{
+        \"supplier_id\": \"#{supp.id}\",
+        \"product_category_id\": \"#{cat.id}\"
+      }", headers: headers
+
+      expect(response.status).to eq 422
+      expect(response.body).to include 'Nome não pode ficar em branco'
+      expect(response.body).to include 'Peso não pode ficar em branco'
+      expect(response.body).to include 'Altura não pode ficar em branco'
+      expect(response.body).to include 'Largura não pode ficar em branco'
+      expect(response.body).to include 'Profundidade não pode ficar em branco'
+      expect(response.body).to include 'Peso não é um número'
+      expect(response.body).to include 'Altura não é um número'
+      expect(response.body).to include 'Largura não é um número'
+      expect(response.body).to include 'Profundidade não é um número'
+
+    end
+
+    it 'and lost connection to the database' do
+      allow(ProductType).to receive(:new).and_raise ActiveRecord::ConnectionNotEstablished
+      supp = Supplier.create!(
+        trading_name: 'Samsung', company_name: 'Samsung do BR LTDA',
+        cnpj: '85935972000120', address: 'Av Industrial, 1000, São Paulo',
+        email: 'financeiro@samsung.com.br', telephone: '11 1234-5678'
+      )
+      cat = ProductCategory.create!(name: 'Bebidas e utensílios')
+
+      headers = { "CONTENT_TYPE" => "application/json"}
+      post '/api/v1/product_types', params: "{
+        \"name\": \"Caneca Star Wars\",
+        \"weight\": \"300\",
+        \"length\": \"8\",
+        \"height\": \"14\",
+        \"width\": \"10\",
+        \"supplier_id\": \"#{supp.id}\",
+        \"product_category_id\": \"#{cat.id}\"
+      }", headers: headers
+
+      expect(response.status).to eq 503
+      parsed_response = JSON.parse(response.body)
+      expect(parsed_response["error"]).to eq 'Não foi possível conectar ao banco de dados'
+
+    end
   end
 
 end
