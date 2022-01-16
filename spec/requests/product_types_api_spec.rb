@@ -100,4 +100,7 @@ describe 'Product Type API' do
 
   end
 
+  context 'POST /api/v1/product_types' do
+  end
+
 end
