@@ -20,8 +20,6 @@ describe 'Warehouse API' do
       expect(response.status).to eq 200
       expect(parsed_response[0]["name"]).to eq 'Maceió'
       expect(parsed_response[1]["name"]).to eq 'Guarulhos'
-      expect(response.body).not_to include 'Av Fernandes Lima'
-      expect(response.body).not_to include 'Av do Aeroporto'
 
     end
 
@@ -52,7 +50,6 @@ describe 'Warehouse API' do
       expect(parsed_response["city"]).to eq 'Guarulhos'
       expect(parsed_response.keys).not_to include 'created_at'
       expect(parsed_response.keys).not_to include 'updated_at'
-      expect(response.body).not_to include 'Av do Aeroporto'
     end
 
     it 'warehouse dont exist' do 

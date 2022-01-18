@@ -2,6 +2,7 @@ json.id @warehouse.id
 json.name @warehouse.name
 json.code @warehouse.code
 json.description @warehouse.description
+json.description @warehouse.address
 json.city @warehouse.city
 json.state @warehouse.state
 json.postal_code @warehouse.postal_code
