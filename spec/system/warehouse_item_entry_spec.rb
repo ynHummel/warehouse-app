@@ -2,32 +2,14 @@ require 'rails_helper'
 
 describe 'User register items entry' do
   it 'successfully' do
-    user = User.create(email: 'admin@email.com', password: '12345678')
+    user = create(:user)
     cat = ProductCategory.create!(name: 'Brinquedos')
     cat1 = ProductCategory.create!(name: 'Canecas')
-    w1 = Warehouse.create!( 
-      name: 'Guarulhos', code: 'GRU', description: 'teste',
-      address: 'Av teste', city: 'São Paulo', state: 'SP',
-      postal_code: '00000-000', total_area: 10000, useful_area: 8000,
-      product_categories: [cat1]
-    )
-    supplier = Supplier.create!( 
-      trading_name: 'Fantasy Supplier', company_name: 'FS fornecimentos SA',
-      cnpj: '12345678901234', address: 'Av dos Produtos',
-      email: 'fantasyprodutos@fornecimentos.com', telephone: '00000000' 
-    )
-    p1 = ProductType.create!( 
-      name: 'Caneca Star Wars', height: 14, width: 10, length: 8,
-      weight: 300, supplier: supplier, product_category: cat1
-    )
-    p2 = ProductType.create!( 
-      name: 'Pelúcia Dumbo', height: 50, width: 40, length: 20,
-      weight: 400, supplier: supplier, product_category: cat
-    )
-    p3 = ProductType.create!( 
-      name: 'Caneca Liga da Justiça', height: 14, width: 10, length: 8,
-      weight: 300, supplier: supplier, product_category: cat1
-    )
+    w1 = create(:warehouse, product_categories: [cat1])
+    supplier = create(:supplier)
+    p1 = create(:product_type, name: 'Caneca Star Wars', product_category: cat1)
+    p2 = create(:product_type, product_category: cat)
+    p3 = create(:product_type, product_category: cat1)
 
     login_as(user)
     visit root_path
