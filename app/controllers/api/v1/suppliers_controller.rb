@@ -11,7 +11,7 @@ class Api::V1::SuppliersController < Api::V1::ApiController
 
   def create
     supplier_params = params.permit(
-      :trading_name, :company_name, :cnpj, 
+      :trading_name, :company_name, :cnpj,
       :address, :email, :telephone
     )
     supplier = Supplier.new(supplier_params)
@@ -21,5 +21,4 @@ class Api::V1::SuppliersController < Api::V1::ApiController
       render json: supplier.errors.full_messages, status: 422
     end
   end
-
 end

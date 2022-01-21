@@ -6,7 +6,7 @@ class Api::V1::ApiController < ActionController::API
   private
 
   def return_404
-    render status: 404, json: { "error": "Objeto não encontrado" } 
+    render status: 404, json: { "error": "Objeto não encontrado" }
   end
 
   def return_503
@@ -16,5 +16,4 @@ class Api::V1::ApiController < ActionController::API
   def return_500
     render status: 500, json: { "error": "Algo deu errado" }
   end
-
 end

@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe 'User Login' do
   it 'successfully' do
-    User.create!(email: 'yuri@email.com', password:'12345678')
+    User.create!(email: 'yuri@email.com', password: '12345678')
 
     visit root_path
     within 'nav' do
@@ -19,7 +19,7 @@ describe 'User Login' do
   end
 
   it 'and logout' do
-    User.create!(email: 'yuri@email.com', password:'12345678')
+    User.create!(email: 'yuri@email.com', password: '12345678')
 
     visit root_path
     within 'nav' do

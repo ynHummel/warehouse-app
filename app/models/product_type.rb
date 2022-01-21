@@ -1,5 +1,5 @@
 class ProductType < ApplicationRecord
-  belongs_to :supplier 
+  belongs_to :supplier
   belongs_to :product_category
   has_many :product_bundle_items
   has_many :product_bundles, through: :product_bundle_items
@@ -17,6 +17,7 @@ class ProductType < ApplicationRecord
   end
 
   private
+
   def generate_sku
     loop do
       new_sku = SecureRandom.alphanumeric(20).upcase
@@ -26,5 +27,4 @@ class ProductType < ApplicationRecord
       end
     end
   end
-  
 end

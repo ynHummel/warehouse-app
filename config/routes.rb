@@ -11,18 +11,17 @@ Rails.application.routes.draw do
 
   resources :suppliers, only: [:index, :show, :new, :create]
 
-  resources :product_types, only:[:show, :new, :create, :edit, :update]
+  resources :product_types, only: [:show, :new, :create, :edit, :update]
 
   resources :product_bundles, only: [:show, :new, :create]
 
   resources :product_categories, only: [:index, :show, :new, :create]
 
-  namespace :api, defaults: {format: :json} do
+  namespace :api, defaults: { format: :json } do
     namespace :v1 do
       resources :warehouses, only: [:index, :show, :create]
       resources :suppliers, only: [:index, :show, :create]
       resources :product_types, only: [:index, :show, :create]
     end
   end
-
 end

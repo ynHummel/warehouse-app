@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe 'User sees supplier details' do
   it 'successfully' do
-    Supplier.create!( 
+    Supplier.create!(
       trading_name: 'Fantasy Supplier', company_name: 'FS fornecimentos SA',
       cnpj: '12345678901234', address: 'Av dos Produtos',
-      email: 'fantasyprodutos@fornecimentos.com', telephone: '00000000' 
+      email: 'fantasyprodutos@fornecimentos.com', telephone: '00000000'
     )
 
     visit root_path
@@ -21,17 +21,17 @@ describe 'User sees supplier details' do
   end
 
   it 'and see the supplier product types' do
-    supplier = Supplier.create!( 
+    supplier = Supplier.create!(
       trading_name: 'Fantasy Supplier', company_name: 'FS fornecimentos SA',
       cnpj: '12345678901234', address: 'Av dos Produtos',
-      email: 'fantasyprodutos@fornecimentos.com', telephone: '00000000' 
+      email: 'fantasyprodutos@fornecimentos.com', telephone: '00000000'
     )
     cat = ProductCategory.create!(name: 'Categoria')
-    p1 = ProductType.create!( 
+    p1 = ProductType.create!(
       name: 'Caneca Star Wars', height: 14, width: 10, length: 8,
       weight: 300, supplier: supplier, product_category: cat
     )
-    p2 = ProductType.create!( 
+    p2 = ProductType.create!(
       name: 'Pelúcia Dumbo', height: 50, width: 40, length: 20,
       weight: 400, supplier: supplier, product_category: cat
     )

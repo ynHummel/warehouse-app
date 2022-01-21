@@ -2,20 +2,20 @@ require 'rails_helper'
 
 describe 'User register a product type' do
   it 'successfully' do
-    user = User.create!(email: 'yuri@email.com', password:'12345678')
+    user = User.create!(email: 'yuri@email.com', password: '12345678')
     Supplier.create!(
-      trading_name: 'Cerâmicas Geek', 
+      trading_name: 'Cerâmicas Geek',
       company_name: 'Geek fornecimentos SA', cnpj: '12345678901234',
-      email: 'geekceramicas@fornecimentos.com' 
+      email: 'geekceramicas@fornecimentos.com'
     )
     Supplier.create!(
-      trading_name: 'Fábrica de Camisetas', 
+      trading_name: 'Fábrica de Camisetas',
       company_name: 'Esporte roupas SA', cnpj: '12341234567890',
-      email: 'golcamisas@fornecimentos.com' 
+      email: 'golcamisas@fornecimentos.com'
     )
     ProductCategory.create!(name: 'Canecas')
     ProductCategory.create!(name: 'Camisetas')
-    
+
     login_as(user, :scope => :user)
     visit root_path
     click_on 'Cadastrar modelo de produto'
@@ -27,27 +27,24 @@ describe 'User register a product type' do
     select 'Cerâmicas Geek', from: 'Fornecedor'
     select 'Canecas', from: 'Categoria'
     click_on 'Salvar'
-    
+
     expect(page).to have_content 'Modelo de produto registrado com sucesso'
     expect(page).to have_content 'Caneca Star Wars'
     expect(page).to have_content '300 gramas'
     expect(page).to have_content 'Dimensões: 12 x 8 x 14'
     expect(page).to have_content 'Fornecedor: Cerâmicas Geek'
-
   end
 
   it 'with obligatory information at fault' do
-    user = User.create!(email: 'yuri@email.com', password:'12345678')
-    
-    Supplier.create!(trading_name: 'Cerâmicas Geek', 
-      company_name: 'Geek fornecimentos SA', cnpj: '12345678901234',
-      email: 'geekceramicas@fornecimentos.com' 
-    )
-    Supplier.create!(trading_name: 'Fábrica de Camisetas', 
-      company_name: 'Esporte roupas SA', cnpj: '12341234567890',
-      email: 'golcamisas@fornecimentos.com' 
-    )
-    
+    user = User.create!(email: 'yuri@email.com', password: '12345678')
+
+    Supplier.create!(trading_name: 'Cerâmicas Geek',
+                     company_name: 'Geek fornecimentos SA', cnpj: '12345678901234',
+                     email: 'geekceramicas@fornecimentos.com')
+    Supplier.create!(trading_name: 'Fábrica de Camisetas',
+                     company_name: 'Esporte roupas SA', cnpj: '12341234567890',
+                     email: 'golcamisas@fornecimentos.com')
+
     login_as(user, :scope => :user)
     visit root_path
     click_on 'Cadastrar modelo de produto'
@@ -62,5 +59,4 @@ describe 'User register a product type' do
     expect(page).to have_content 'Profundidade não pode ficar em branco'
     expect(page).to have_content 'Fornecedor é obrigatório(a)'
   end
-  
 end

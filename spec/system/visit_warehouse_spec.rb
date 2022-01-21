@@ -2,10 +2,10 @@ require 'rails_helper'
 
 describe 'Visitor sees the warehouse page' do
   it "and see it's details" do
-    Warehouse.create!( 
+    Warehouse.create!(
       name: 'Guarulhos', code: 'GRU', description: 'descrição teste',
       address: 'Av teste', city: 'São Paulo', state: 'SP',
-      postal_code: '00000-000', total_area: 10000, useful_area: 8000 
+      postal_code: '00000-000', total_area: 10000, useful_area: 8000
     )
 
     visit root_path
@@ -19,20 +19,19 @@ describe 'Visitor sees the warehouse page' do
     expect(page).to have_content 'CEP: 00000-000'
     expect(page).to have_content 'Área Total: 10000'
     expect(page).to have_content 'Área Útil: 8000'
-
   end
 
   it 'and goes back to the homepage' do
-    Warehouse.create!( 
+    Warehouse.create!(
       name: 'Guarulhos', code: 'GRU', description: 'descrição teste',
       address: 'Av teste', city: 'São Paulo', state: 'SP',
-      postal_code: '00000-000', total_area: 10000, useful_area: 8000 
+      postal_code: '00000-000', total_area: 10000, useful_area: 8000
     )
 
     visit root_path
     click_on 'Guarulhos'
     click_on 'Voltar'
 
-    expect(current_path).to eq root_path 
+    expect(current_path).to eq root_path
   end
 end

@@ -16,8 +16,8 @@ describe 'User register items entry' do
     click_on 'Guarulhos'
     fill_in 'Quantidade', with: 10
     select 'Caneca Star Wars', from: 'Produto'
-    #preço
-    #lote
+    # preço
+    # lote
     click_on 'Confirmar'
 
     expect(current_path).to eq warehouse_path(w1.id)
@@ -31,27 +31,27 @@ describe 'User register items entry' do
   it 'and sees the warehouses in the product type page' do
     user = User.create(email: 'admin@email.com', password: '12345678')
     cat = ProductCategory.create!(name: 'Bebidas')
-    supplier = Supplier.create!( 
+    supplier = Supplier.create!(
       trading_name: 'Vinícola Miolo', company_name: 'Miolo Fábrica de bebidas LTDA',
       cnpj: '51905325000154', address: 'Avenida Cabernet, 100',
-      email: 'contato@miolovinhos.com', telephone: '71 1234-5678' 
+      email: 'contato@miolovinhos.com', telephone: '71 1234-5678'
     )
-    w1 = Warehouse.create!( 
+    w1 = Warehouse.create!(
       name: 'Guarulhos', code: 'GRU', description: 'teste',
       address: 'Av teste', city: 'São Paulo', state: 'SP',
-      postal_code: '00000-000', total_area: 10000, useful_area: 8000 
+      postal_code: '00000-000', total_area: 10000, useful_area: 8000
     )
-    w2 = Warehouse.create!( 
+    w2 = Warehouse.create!(
       name: 'Porto Alegre', code: 'POA', description: 'teste',
       address: 'Av teste', city: 'Porto Alegre', state: 'RS',
-      postal_code: '00001-000', total_area: 10000, useful_area: 8000 
+      postal_code: '00001-000', total_area: 10000, useful_area: 8000
     )
-    w3 = Warehouse.create!( 
+    w3 = Warehouse.create!(
       name: 'São Luís', code: 'SLZ', description: 'teste',
       address: 'Av teste', city: 'São Luís', state: 'MA',
-      postal_code: '00002-000', total_area: 10000, useful_area: 8000 
+      postal_code: '00002-000', total_area: 10000, useful_area: 8000
     )
-    p = ProductType.create!( 
+    p = ProductType.create!(
       name: 'Vinho Tinto Miolo', height: 30, width: 10, length: 10,
       weight: 800, supplier: supplier, product_category: cat
     )
@@ -68,8 +68,8 @@ describe 'User register items entry' do
     click_on 'Vinícola Miolo'
     click_on 'Vinho Tinto Miolo'
 
-    expect(page).to have_css('h2', text:'Disponível nos galpões:')
-    expect(page).to have_content('Guarulhos') 
+    expect(page).to have_css('h2', text: 'Disponível nos galpões:')
+    expect(page).to have_content('Guarulhos')
     expect(page).to have_content('GRU')
     expect(page).to have_content('3 unidades')
     expect(page).to have_content('Porto Alegre')
@@ -80,44 +80,40 @@ describe 'User register items entry' do
   end
 
   it 'and can only select products with permited categories' do
-
     user = User.create(email: 'admin@email.com', password: '12345678')
     cat = ProductCategory.create!(name: 'Brinquedos')
     cat1 = ProductCategory.create!(name: 'Canecas')
-    w1 = Warehouse.create!( 
+    w1 = Warehouse.create!(
       name: 'Guarulhos', code: 'GRU', description: 'teste',
       address: 'Av teste', city: 'São Paulo', state: 'SP',
       postal_code: '00000-000', total_area: 10000, useful_area: 8000,
       product_categories: [cat1]
     )
-    supplier = Supplier.create!( 
+    supplier = Supplier.create!(
       trading_name: 'Fantasy Supplier', company_name: 'FS fornecimentos SA',
       cnpj: '12345678901234', address: 'Av dos Produtos',
-      email: 'fantasyprodutos@fornecimentos.com', telephone: '00000000' 
+      email: 'fantasyprodutos@fornecimentos.com', telephone: '00000000'
     )
-    p1 = ProductType.create!( 
+    p1 = ProductType.create!(
       name: 'Caneca Star Wars', height: 14, width: 10, length: 8,
       weight: 300, supplier: supplier, product_category: cat1
     )
-    p2 = ProductType.create!( 
+    p2 = ProductType.create!(
       name: 'Caneca Liga da Justiça', height: 14, width: 10, length: 8,
       weight: 300, supplier: supplier, product_category: cat1
     )
-    p3 = ProductType.create!( 
+    p3 = ProductType.create!(
       name: 'Pelúcia Dumbo', height: 50, width: 40, length: 20,
       weight: 400, supplier: supplier, product_category: cat
     )
-    
+
     login_as(user)
     visit root_path
     click_on 'Guarulhos'
-    
 
     expect(current_path).to eq warehouse_path(w1.id)
     expect(page).to have_content('Caneca Liga da Justiça')
     expect(page).to have_content('Caneca Star Wars')
     expect(page).not_to have_content('Pelúcia Dumbo')
-    
   end
-  
 end

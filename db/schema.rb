@@ -11,7 +11,6 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 2022_01_14_022421) do
-
   create_table "product_bundle_items", force: :cascade do |t|
     t.integer "product_type_id", null: false
     t.integer "product_bundle_id", null: false

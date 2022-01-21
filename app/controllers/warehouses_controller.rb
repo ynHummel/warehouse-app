@@ -15,9 +15,9 @@ class WarehousesController < ApplicationController
   def create
     @warehouse = Warehouse.new(warehouse_params)
     @categories = ProductCategory.all
-    
+
     if @warehouse.save()
-      redirect_to warehouse_path(@warehouse.id), notice:'Galpão registrado com sucesso'
+      redirect_to warehouse_path(@warehouse.id), notice: 'Galpão registrado com sucesso'
     else
       flash.now[:alert] = 'Não foi possível salvar o galpão'
       render 'new'
@@ -32,7 +32,7 @@ class WarehousesController < ApplicationController
     @warehouse = Warehouse.find(id = params[:id])
 
     if @warehouse.update(warehouse_params)
-      redirect_to warehouse_path(@warehouse.id), notice:'Galpão atualizado com sucesso'
+      redirect_to warehouse_path(@warehouse.id), notice: 'Galpão atualizado com sucesso'
     else
       flash.now[:alert] = 'Não foi possível salvar o galpão'
       render 'edit'
@@ -70,5 +70,4 @@ class WarehousesController < ApplicationController
       :useful_area, product_category_ids: []
     )
   end
-  
 end

@@ -13,11 +13,9 @@ describe 'User access the Product Categories page' do
     expect(page).to have_content 'Canecas'
     expect(page).to have_content 'Bebidas'
     expect(page).to have_content 'Utensílios de cozinha'
-
   end
 
   it 'and there are no registered categories' do
-    
     visit root_path
     click_on 'Categorias'
 
@@ -25,23 +23,22 @@ describe 'User access the Product Categories page' do
   end
 
   it 'and can access individual categories pages' do
-
     cat = ProductCategory.create!(name: 'Utensílios de cozinha')
     cat1 = ProductCategory.create!(name: 'Bebidas')
-    supplier = Supplier.create!( 
+    supplier = Supplier.create!(
       trading_name: 'Vinícola Miolo', company_name: 'Miolo Fábrica de bebidas LTDA',
       cnpj: '51905325000154', address: 'Avenida Cabernet, 100',
-      email: 'contato@miolovinhos.com', telephone: '71 1234-5678' 
+      email: 'contato@miolovinhos.com', telephone: '71 1234-5678'
     )
-    p1 = ProductType.create!( 
+    p1 = ProductType.create!(
       name: 'Vinho Tinto Miolo', height: 30, width: 10, length: 10,
       weight: 800, supplier: supplier, product_category: cat1
     )
-    p2 = ProductType.create!( 
+    p2 = ProductType.create!(
       name: 'Vinho Branco Miolo', height: 30, width: 10, length: 10,
       weight: 800, supplier: supplier, product_category: cat1
     )
-    p3 = ProductType.create!( 
+    p3 = ProductType.create!(
       name: 'Taça para vinho', height: 12, width: 10, length: 10,
       weight: 50, supplier: supplier, product_category: cat
     )
@@ -58,7 +55,6 @@ describe 'User access the Product Categories page' do
 
     expect(page).not_to have_content 'Taça para vinho'
     expect(page).not_to have_content "#{p3.sku}"
-
   end
 
   it 'and there are no product_types inside this category' do
@@ -69,7 +65,5 @@ describe 'User access the Product Categories page' do
     click_on 'Bebidas'
 
     expect(page).to have_content 'Não existem produtos nessa categoria'
-    
   end
-
 end

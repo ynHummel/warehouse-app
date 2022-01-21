@@ -5,6 +5,7 @@ class ProductBundle < ApplicationRecord
   before_create :generate_sku, :bundle_weight
 
   private
+
   def generate_sku
     loop do
       new_sku = SecureRandom.alphanumeric(20).upcase
@@ -22,5 +23,4 @@ class ProductBundle < ApplicationRecord
     end
     self.weight = total
   end
-
 end

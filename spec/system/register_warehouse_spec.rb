@@ -14,18 +14,18 @@ describe 'User tries to register a warehouse' do
   end
 
   it 'from the homepage' do
-    user = User.create!(email: 'yuri@email.com', password:'12345678')
-    
+    user = User.create!(email: 'yuri@email.com', password: '12345678')
+
     login_as(user, :scope => :user)
     visit root_path
     click_on 'Cadastrar novo galpão'
 
     expect(page).to have_content 'Novo Galpão'
-    expect(page).to have_field 'Nome' 
+    expect(page).to have_field 'Nome'
     expect(page).to have_field 'Código'
     expect(page).to have_field 'Endereço'
     expect(page).to have_field 'Cidade'
-    expect(page).to have_field 'Estado' 
+    expect(page).to have_field 'Estado'
     expect(page).to have_field 'CEP'
     expect(page).to have_field 'Descrição'
     expect(page).to have_field 'Área Total'
@@ -34,11 +34,11 @@ describe 'User tries to register a warehouse' do
   end
 
   it 'successfully' do
-    user = User.create!(email: 'yuri@email.com', password:'12345678')
+    user = User.create!(email: 'yuri@email.com', password: '12345678')
     ProductCategory.create!(name: 'Canecas')
     ProductCategory.create!(name: 'Móveis')
     ProductCategory.create!(name: 'Alimentos')
-    
+
     login_as(user, :scope => :user)
     visit root_path
     click_on 'Cadastrar novo galpão'
@@ -76,8 +76,8 @@ describe 'User tries to register a warehouse' do
   end
 
   it 'and it fails' do
-    user = User.create!(email: 'yuri@email.com', password:'12345678')
-    
+    user = User.create!(email: 'yuri@email.com', password: '12345678')
+
     login_as(user, :scope => :user)
     visit root_path
     click_on 'Cadastrar novo galpão'

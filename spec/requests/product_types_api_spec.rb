@@ -3,17 +3,17 @@ require 'rails_helper'
 describe 'Product Type API' do
   context 'GET /api/v1/product_types' do
     it 'successfully' do
-      supplier = Supplier.create!( 
+      supplier = Supplier.create!(
         trading_name: 'Vinícola Miolo', company_name: 'Miolo Fábrica de bebidas LTDA',
         cnpj: '51905325000154', address: 'Avenida Cabernet, 100',
-        email: 'contato@miolovinhos.com', telephone: '71 1234-5678' 
+        email: 'contato@miolovinhos.com', telephone: '71 1234-5678'
       )
       cat = ProductCategory.create!(name: 'Bebidas')
-      pt = ProductType.create!( 
+      pt = ProductType.create!(
         name: 'Vinho Tinto Miolo', height: 30, width: 10, length: 10,
         weight: 800, supplier: supplier, product_category: cat
       )
-      ProductType.create!( 
+      ProductType.create!(
         name: 'Vinho Branco Miolo', height: 30, width: 10, length: 10,
         weight: 802, supplier: supplier, product_category: cat
       )
@@ -28,11 +28,9 @@ describe 'Product Type API' do
       expect(parsed_response[0].keys).not_to include 'updated_at'
       expect(parsed_response[1].keys).not_to include 'created_at'
       expect(parsed_response[1].keys).not_to include 'updated_at'
-
     end
 
     it 'empty response' do
-      
       get '/api/v1/product_types'
 
       parsed_response = JSON.parse(response.body)
@@ -43,13 +41,13 @@ describe 'Product Type API' do
 
   context 'GET /api/v1/product_types/:id' do
     it 'successfully' do
-      supplier = Supplier.create!( 
+      supplier = Supplier.create!(
         trading_name: 'Vinícola Miolo', company_name: 'Miolo Fábrica de bebidas LTDA',
         cnpj: '51905325000154', address: 'Avenida Cabernet, 100',
-        email: 'contato@miolovinhos.com', telephone: '71 1234-5678' 
+        email: 'contato@miolovinhos.com', telephone: '71 1234-5678'
       )
       cat = ProductCategory.create!(name: 'Bebidas')
-      pt = ProductType.create!( 
+      pt = ProductType.create!(
         name: 'Vinho Tinto Miolo', height: 30, width: 10, length: 10,
         weight: 800, supplier: supplier, product_category: cat
       )
@@ -66,7 +64,6 @@ describe 'Product Type API' do
     end
 
     it 'product_type not found - 404' do
-
       get '/api/v1/product_types/99999999999'
 
       parsed_response = JSON.parse(response.body)
@@ -75,7 +72,7 @@ describe 'Product Type API' do
     end
 
     it 'invalid parameter - 412' do # Exercicio / Reflexao
-      #get("/api/v1/product_models/blabla")
+      # get("/api/v1/product_models/blabla")
     end
 
     it 'database error - 503' do
@@ -90,14 +87,13 @@ describe 'Product Type API' do
         weight: 300, supplier: supplier, product_category: cat
       )
       allow(ProductType).to receive(:find).with(sw.id.to_s).and_raise ActiveRecord::ConnectionNotEstablished
-      
+
       get("/api/v1/product_types/#{sw.id}")
 
       expect(response.status).to eq 503
       parsed_response = JSON.parse(response.body)
       expect(parsed_response["error"]).to eq 'Não foi possível conectar ao banco de dados'
     end
-
   end
 
   context 'POST /api/v1/product_types' do
@@ -109,7 +105,7 @@ describe 'Product Type API' do
       )
       cat = ProductCategory.create!(name: 'Bebidas e utensílios')
 
-      headers = { "CONTENT_TYPE" => "application/json"}
+      headers = { "CONTENT_TYPE" => "application/json" }
       post '/api/v1/product_types', params: "{
         \"name\": \"Caneca Star Wars\",
         \"weight\": \"300\",
@@ -120,7 +116,6 @@ describe 'Product Type API' do
         \"product_category_id\": \"#{cat.id}\"
       }", headers: headers
 
-      
       expect(response.status).to eq 201
       parsed_response = JSON.parse(response.body)
       expect(parsed_response["name"]).to eq 'Caneca Star Wars'
@@ -132,7 +127,6 @@ describe 'Product Type API' do
       expect(parsed_response["product_category_id"]).to eq 1
       expect(parsed_response.keys).not_to include 'created_at'
       expect(parsed_response.keys).not_to include 'updated_at'
-
     end
 
     it 'has required field' do
@@ -143,7 +137,7 @@ describe 'Product Type API' do
       )
       cat = ProductCategory.create!(name: 'Bebidas e utensílios')
 
-      headers = { "CONTENT_TYPE" => "application/json"}
+      headers = { "CONTENT_TYPE" => "application/json" }
       post '/api/v1/product_types', params: "{
         \"supplier_id\": \"#{supp.id}\",
         \"product_category_id\": \"#{cat.id}\"
@@ -159,7 +153,6 @@ describe 'Product Type API' do
       expect(response.body).to include 'Altura não é um número'
       expect(response.body).to include 'Largura não é um número'
       expect(response.body).to include 'Profundidade não é um número'
-
     end
 
     it 'and lost connection to the database' do
@@ -171,7 +164,7 @@ describe 'Product Type API' do
       )
       cat = ProductCategory.create!(name: 'Bebidas e utensílios')
 
-      headers = { "CONTENT_TYPE" => "application/json"}
+      headers = { "CONTENT_TYPE" => "application/json" }
       post '/api/v1/product_types', params: "{
         \"name\": \"Caneca Star Wars\",
         \"weight\": \"300\",
@@ -185,8 +178,6 @@ describe 'Product Type API' do
       expect(response.status).to eq 503
       parsed_response = JSON.parse(response.body)
       expect(parsed_response["error"]).to eq 'Não foi possível conectar ao banco de dados'
-
     end
   end
-
 end
