@@ -1,32 +1,36 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
 ## Sobre o Projeto
 
 Este é um projeto de exercício da turma 7 do programa Quero Ser Dev da Locaweb. O projeto consiste num sistema de gestão de galpões e de seus respectivos estoques de produtos.
 
+### Versão do Ruby utilizada:
+```
+3.0.3
+```
+
+### Versão do Rails utilizada:
+```
+6.1.4.4
+```
+
+### Versão do yarn utilizada:
+```
+1.22.17
+```
+
+### Para começar a utilizar o projeto
+Clone o repositório e execute os comandos abaixo na pasta do projeto
+```
+$ bundle install
+$ yarn install
+$ rails db:migrate
+```
+### Testes
+Os testes do projeto se encontram na pasta spec e para execulos basta rodar o comando:
+```
+$ rspec
+```
 
 
 ## API
@@ -135,7 +139,6 @@ Status: 200 (OK)
     "name": "Maceió",
     "code": "MCZ",
     "description": "Ótimo galpão numa linda cidade",
-    "address":"Av Fernandes Lima",
     "city": "Maceió",
     "state": "AL",
     "postal_code": "57050-000",
@@ -212,7 +215,7 @@ Status: 200 (OK)
 **Requisição:**
 
 ```
-GET /api/v1/product_types/:id
+GET /api/v1/product_types
 ```
 
 **Resposta:**
@@ -246,6 +249,49 @@ Status: 200 (OK)
 ]
 
 ```
+
+#### Criar um Modelo de produto
+
+**Requisição:**
+
+```
+POST /api/v1/product_types
+```
+
+**Parâmetros:**
+
+```
+{
+  "name": "Pelúcia Dumbo",
+  "weight": 400,
+  "height": 50,
+  "length": 20,
+  "width": 40,
+  "supplier_id": 1,
+  "product_category_id": 2
+}
+```
+
+**Resposta:**
+
+```
+Status: 201 (Criado)
+
+{
+  "id": 1,
+  "name": "Pelúcia Dumbo",
+  "weight": 400,
+  "height": 50,
+  "length": 20,
+  "width": 40,
+  "sku": "PQP4YXR3FAGYEQCCBQJJ",
+  "supplier_id": 1,
+  "product_category_id": 2
+  "dimensions": "50 x 40 x 20"
+  "supplier": {...}
+}
+```
+
 #### Visualizar detalhes de um modelo de produto
 
 **Requisição**
@@ -270,7 +316,7 @@ Status: 200 (OK)
     "supplier_id": 1,
     "product_category_id": 2,
     "dimensions": "50 x 40 x 20"
-    ""supplier": {...}
+    "supplier": {...}
   }
 ```
 
