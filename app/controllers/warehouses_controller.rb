@@ -3,7 +3,7 @@ class WarehousesController < ApplicationController
 
   def show
     @warehouse = Warehouse.find(id = params[:id])
-    @product_types = ProductType.where(product_category: @warehouse.product_categories)
+    @product_types = ProductType.where(product_category: @warehouse.product_categories).sellable
     @items = @warehouse.warehouse_items.group(:product_type).count
   end
 

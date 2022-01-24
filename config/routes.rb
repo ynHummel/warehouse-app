@@ -11,7 +11,9 @@ Rails.application.routes.draw do
 
   resources :suppliers, only: [:index, :show, :new, :create]
 
-  resources :product_types, only: [:show, :new, :create, :edit, :update]
+  resources :product_types, only: [:show, :new, :create, :edit, :update] do
+    patch :change_status, on: :member
+  end
 
   resources :product_bundles, only: [:show, :new, :create]
 

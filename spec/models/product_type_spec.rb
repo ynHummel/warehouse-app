@@ -136,4 +136,24 @@ RSpec.describe ProductType, type: :model do
       expect(result).to eq false
     end
   end
+  context 'sellable?' do
+    it 'products should be created with sellable state' do
+      cat = ProductCategory.create!(name: 'Teste')
+      pt = create(:product_type, product_category: cat)
+
+      result = pt.sellable?
+
+      expect(result).to eq true
+    end
+
+    it 'products should be able to become unsellable' do
+      cat = ProductCategory.create!(name: 'Teste')
+      pt = create(:product_type, product_category: cat)
+
+      pt.unsellable!
+      result = pt.sellable?
+
+      expect(result).to eq false
+    end
+  end
 end

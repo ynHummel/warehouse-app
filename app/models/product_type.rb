@@ -1,4 +1,6 @@
 class ProductType < ApplicationRecord
+  enum status: { sellable: 0, unsellable: 1 }
+
   belongs_to :supplier
   belongs_to :product_category
   has_many :product_bundle_items

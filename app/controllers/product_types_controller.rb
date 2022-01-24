@@ -44,6 +44,16 @@ class ProductTypesController < ApplicationController
     end
   end
 
+  def change_status
+    product_type = ProductType.find(params[:id])
+    if product_type.sellable?
+      product_type.unsellable!
+    else
+      product_type.sellable!
+    end
+    redirect_to product_type_path(product_type.id)
+  end
+
   private
 
   def product_type_params

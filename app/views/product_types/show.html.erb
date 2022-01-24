@@ -11,6 +11,16 @@
   <dd><%= @product_type.product_category.name if @product_type.product_category %></dd>
 </dl>
 
+<h2>Status do produto:</h2>
+<% if @product_type.sellable? %>
+  <p><b>Disponível</b> para venda</p>
+  <%= button_to 'Tornar insdisponível', change_status_product_type_path, { method: 'patch' } %>
+<% else  %>
+  <p><b>Indisponível</b> para venda</p>
+  <%= button_to 'Disponibilizar', change_status_product_type_path, { method: 'patch' } %>
+<% end %>
+
+
 <h2>Disponível nos galpões:</h2>
 <% @items.each_pair do |warehouse, quantity| %>
   <p>
