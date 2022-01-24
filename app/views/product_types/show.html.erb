@@ -14,10 +14,14 @@
 <h2>Status do produto:</h2>
 <% if @product_type.sellable? %>
   <p><b>Disponível</b> para venda</p>
-  <%= button_to 'Tornar insdisponível', change_status_product_type_path, { method: 'patch' } %>
+  <% if user_signed_in? %>
+    <%= button_to 'Tornar insdisponível', change_status_product_type_path, { method: 'patch' } %>
+  <% end %>
 <% else  %>
   <p><b>Indisponível</b> para venda</p>
-  <%= button_to 'Disponibilizar', change_status_product_type_path, { method: 'patch' } %>
+  <% if user_signed_in? %>
+    <%= button_to 'Disponibilizar', change_status_product_type_path, { method: 'patch' } %>
+  <% end %>
 <% end %>
 
 
