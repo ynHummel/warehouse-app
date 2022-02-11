@@ -1,14 +1,22 @@
-<h1>Categorias de produtos</h1>
+<h1 class="ls-title-intro ls-ico-list2 ls-no-bg">Categorias de produtos</h1>
 
-<%= link_to 'Cadastrar categoria de produtos', new_product_category_path %>
+<p><%= link_to 'Cadastrar categoria de produtos', new_product_category_path %></p>
 
 <% if @product_categories.empty? %>
   <p>Nenhuma categoria cadastrada</p>
 <% else %>
 
   <% @product_categories.each do |cat| %>
-    <div>
-      <%= link_to cat.name, product_category_path(cat.id) %>
+    <div class="ls-list">
+      <header class="ls-list-header">
+        <div class="ls-list-title col-md-4">
+          <%= link_to cat.name, product_category_path(cat.id) %>
+          <small>Produtos nessa categoria: <%= cat.product_types.count %></small>
+        </div>
+        <div class="col-md-3 col-md-offset-5 ls-txt-right">
+          <%= link_to "Ver detalhes", product_category_path(cat.id), class: "ls-btn-primary ls-btn-sm"%>
+        </div>
+      </header>
     </div>
   <% end %>
 

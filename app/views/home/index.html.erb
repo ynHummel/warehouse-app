@@ -1,6 +1,15 @@
 <h1 class="ls-title-intro ls-ico-list2 ls-no-bg">Galpões cadastrados:</h1>
 <% if user_signed_in? %>
-  <%= link_to 'Cadastrar novo galpão', new_warehouse_path  %>
+  <p><%= link_to 'Cadastrar novo galpão', new_warehouse_path%></p>
+<% end %>
+
+<% if user_signed_in? %>
+  <h2>Buscar galpões</h2>
+  <%= form_with url: search_warehouses_path, method: :get do %>
+    <%= label_tag :q, 'Busca:' %>
+    <%= text_field_tag :q %>
+    <%= submit_tag 'Pesquisar' %>
+  <% end %>
 <% end %>
 
 <% @warehouses.each do |w| %>
@@ -15,15 +24,6 @@
       </div>
     </header>
   </div>
-<% end %>
-
-<% if user_signed_in? %>
-  <h2>Buscar galpões</h2>
-  <%= form_with url: search_warehouses_path, method: :get do %>
-    <%= label_tag :q, 'Busca:' %>
-    <%= text_field_tag :q %>
-    <%= submit_tag 'Pesquisar' %>
-  <% end %>
 <% end %>
 
 <hr>

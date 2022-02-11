@@ -17,18 +17,22 @@
     <header>
       <div class="ls-topbar">
         <h1 class="ls-brand-name">
-          <%= link_to root_path, class: "ls-ico-home" do %>
+          <%= link_to root_path, class: "ls-ico-dashboard" do %>
             <small>Sistema de gestão de galpões</small>
             WareHouse App
           <% end %>
         </h1>
         <div class="ls-notification-topbar">
-          <div data-ls-module="dropdown" class="ls-dropdown ls-user-account ls-user-menu">
+          <div data-ls-module="dropdown" class="ls-user-account">
             <% if user_signed_in? %>
+            <div class="ls-ico-user">
               <span> Olá <%= current_user.email %> </span>
               <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
+            </div>
             <% else %>
-              <%= link_to 'Entrar', new_user_session_path %>
+              <div class="ls-ico-user">
+                <%= link_to 'Entrar', new_user_session_path, class: "ls-btn-primary-danger" %>
+              </div>
             <% end %>
           </div>
         </div>
@@ -38,9 +42,9 @@
         <div class="ls-sidebar-inner">
           <nav class="ls-menu" role="navigation">
             <ul>
-              <li><%= link_to 'Início', root_path %></li>
-              <li><%= link_to 'Fornecedores', suppliers_path %></li>
-              <li><%= link_to 'Categorias', product_categories_path %></li>
+              <li><%= link_to 'Início', root_path, class:"ls-ico-home"%></li>
+              <li><%= link_to 'Fornecedores', suppliers_path, class:"ls-ico-cart" %></li>
+              <li><%= link_to 'Categorias', product_categories_path, class:"ls-ico-table-alt" %></li>
             </ul>
           </nav>
         </div>
@@ -49,8 +53,8 @@
     </header>
     <main class="ls-main">
       <div class="container-fluid">
-        <div class="ls-alert-info"><%= flash[:notice] %></div>
-        <div class="ls-alert-danger"><%= flash[:alert] %></div>
+        <div class="ls-alert-info"><%= notice %></div>
+        <div class="ls-alert-danger"><%= alert %></div>
         <%= yield %>
       </div>
     </main>

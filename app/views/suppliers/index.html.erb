@@ -1,15 +1,22 @@
-<h1>Fornecedores Cadastrados</h1>
+<h1 class="ls-title-intro ls-ico-list2 ls-no-bg">Fornecedores Cadastrados</h1>
 
-<%= link_to 'Cadastrar fornecedor', new_supplier_path  %>
+<p><%= link_to 'Cadastrar fornecedor', new_supplier_path  %></p>
 
 <% if @suppliers.empty? %>
   <p>Nenhum fornecedor cadastrado</p>
 <% else %>
 
   <% @suppliers.each do |supp| %>
-    <div>
-      <%= link_to supp.trading_name, supplier_path(supp.id) %>
-      - <%= supp.company_name %>
+    <div class="ls-list">
+      <header class="ls-list-header">
+        <div class="ls-list-title col-md-4">
+          <%= link_to supp.trading_name, supplier_path(supp.id) %>
+          <small><%= supp.company_name %></small>
+        </div>
+        <div class="col-md-3 col-md-offset-5 ls-txt-right">
+          <%= link_to "Ver detalhes", supplier_path(supp.id), class: "ls-btn-primary ls-btn-sm"%>
+        </div>
+      </header>
     </div>
   <% end %>
   
