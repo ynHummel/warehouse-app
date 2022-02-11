@@ -6,15 +6,15 @@
   <p>Não existem produtos nessa categoria</p>
 <% else %>
 
-  <table>
+  <table class="ls-table ls-table-striped">
     <tr>
-      <th>Produto</th>
-      <th>SKU</th>
+      <th scope="col">Produto</th>
+      <th scope="col">SKU</th>
     </tr>
     <% @product_category.product_types.each do |p| %>
       <tr>
-        <td> <%= link_to p.name, product_type_path(p.id) %></td>
-        <td><%= p.sku %></td>
+        <td scope="row"> <%= link_to p.name, product_type_path(p.id) %></td>
+        <td scope="row"><%= p.sku %></td>
       </tr>
     <% end %>
   </table>
