@@ -16,6 +16,7 @@
   <body>
     <header>
       <div class="ls-topbar">
+        <span class="ls-show-sidebar ls-ico-menu"></span>
         <h1 class="ls-brand-name">
           <%= link_to root_path, class: "ls-ico-dashboard" do %>
             <small>Sistema de gestão de galpões</small>
@@ -24,16 +25,16 @@
         </h1>
         <div class="ls-notification-topbar">
           <div data-ls-module="dropdown" class="ls-user-account">
-            <% if user_signed_in? %>
-            <div class="ls-ico-user">
-              <span> Olá <%= current_user.email %> </span>
-              <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: "ls-btn-sm ls-btn-primary-danger" %>
-            </div>
-            <% else %>
+              <% if user_signed_in? %>
               <div class="ls-ico-user">
-                <%= link_to 'Entrar', new_user_session_path, class: "ls-btn-primary-danger" %>
+                <span> Olá <%= current_user.email %> </span>
+                <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: "ls-btn-sm ls-btn-primary-danger" %>
               </div>
-            <% end %>
+              <% else %>
+                <div class="ls-ico-user">
+                  <%= link_to 'Entrar', new_user_session_path, class: "ls-btn-primary-danger" %>
+                </div>
+              <% end %>
           </div>
         </div>
       </div>
