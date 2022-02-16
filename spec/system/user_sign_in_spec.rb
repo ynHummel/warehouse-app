@@ -5,7 +5,7 @@ describe 'User Login' do
     User.create!(email: 'yuri@email.com', password: '12345678')
 
     visit root_path
-    within 'nav' do
+    within 'div.ls-notification-topbar' do
       click_on 'Entrar'
     end
     fill_in 'E-mail', with: 'yuri@email.com'
@@ -22,13 +22,13 @@ describe 'User Login' do
     User.create!(email: 'yuri@email.com', password: '12345678')
 
     visit root_path
-    within 'nav' do
+    within 'div.ls-notification-topbar' do
       click_on 'Entrar'
     end
     fill_in 'E-mail', with: 'yuri@email.com'
     fill_in 'Senha', with: '12345678'
     click_on 'Log in'
-    within 'nav' do
+    within 'div.ls-notification-topbar' do
       click_on 'Sair'
     end
 

@@ -9,7 +9,7 @@ describe 'User access the Product Categories page' do
     visit root_path
     click_on 'Categorias'
 
-    expect(page).to have_css('h1', text: 'Categorias de produtos')
+    expect(page).to have_css('h1', text: 'Categorias de Produtos')
     expect(page).to have_content 'Canecas'
     expect(page).to have_content 'Bebidas'
     expect(page).to have_content 'Utensílios de cozinha'
