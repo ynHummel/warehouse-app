@@ -51,7 +51,7 @@ describe 'User tries to register a warehouse' do
     fill_in 'Descrição', with: 'Um galpão mineiro com pé no Rio'
     fill_in 'Área Total', with: '5000'
     fill_in 'Área Útil', with: '3000'
-    within("div#categories") do
+    within("fieldset#categories") do
       check 'Móveis'
       check 'Canecas'
     end

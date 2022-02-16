@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="ls-theme-light-red">
   <head>
     <title>WarehouseApp</title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -8,31 +8,57 @@
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="http://assets.locaweb.com.br/locastyle/3.10.1/stylesheets/locastyle.css" rel="stylesheet" type="text/css">
+    <link rel="icon" sizes="192x192" href="/locawebstyle/assets/images/ico-boilerplate.png">
+    <link rel="apple-touch-icon" href="/locawebstyle/assets/images/ico-boilerplate.png">
   </head>
 
   <body>
     <header>
-      <nav>
+      <div class="ls-topbar">
+        <h1 class="ls-brand-name">
+          <%= link_to root_path, class: "ls-ico-dashboard" do %>
+            <small>Sistema de gestão de galpões</small>
+            WareHouse App
+          <% end %>
+        </h1>
+        <div class="ls-notification-topbar">
+          <div data-ls-module="dropdown" class="ls-user-account">
+            <% if user_signed_in? %>
+            <div class="ls-ico-user">
+              <span> Olá <%= current_user.email %> </span>
+              <%= link_to 'Sair', destroy_user_session_path, method: :delete, class: "ls-btn-sm ls-btn-primary-danger" %>
+            </div>
+            <% else %>
+              <div class="ls-ico-user">
+                <%= link_to 'Entrar', new_user_session_path, class: "ls-btn-primary-danger" %>
+              </div>
+            <% end %>
+          </div>
+        </div>
+      </div>
 
-        <%= link_to 'Início', root_path %> |
-        <%= link_to 'Fornecedores', suppliers_path %> |
-        <%= link_to 'Categorias', product_categories_path %> |
-        
-        <% if user_signed_in? %>
-          <span> Olá <%= current_user.email %> </span>
-          <%= link_to 'Sair', destroy_user_session_path, method: :delete %>
-        <% else %>
-          <%= link_to 'Entrar', new_user_session_path %>
-        <% end %>
+      <aside class="ls-sidebar">
+        <div class="ls-sidebar-inner">
+          <nav class="ls-menu" role="navigation">
+            <ul>
+              <li><%= link_to 'Galpões', root_path, class:"ls-ico-home"%></li>
+              <li><%= link_to 'Fornecedores', suppliers_path, class:"ls-ico-cart" %></li>
+              <li><%= link_to 'Categorias', product_categories_path, class:"ls-ico-table-alt" %></li>
+            </ul>
+          </nav>
+        </div>
+      </aside>
 
-      </nav>
     </header>
-    <main>
-    
-      <%= flash[:notice] %>
-      <%= flash[:alert] %>
-      <%= yield %>
-
+    <main class="ls-main">
+      <div class="container-fluid">
+        <div class="ls-alert-info"><%= notice %></div>
+        <div class="ls-alert-danger"><%= alert %></div>
+        <%= yield %>
+      </div>
     </main>
+    <script src="http://code.jquery.com/jquery-2.0.1.min.js"></script>
+    <script src="http://assets.locaweb.com.br/locastyle/3.10.1/javascripts/locastyle.js"></script>
   </body>
 </html>

@@ -1,28 +1,30 @@
-<h1>WareHouse App</h1>
-
-<h2>Boas vindas ao sistema de gestão de estoques</h2>
-
-
-<h2>Galpões cadastrados:</h2>
+<h1 class="ls-title-intro ls-ico-list2 ls-no-bg">Galpões Cadastrados</h1>
 <% if user_signed_in? %>
-  <%= link_to 'Cadastrar novo galpão', new_warehouse_path  %>
+  <p><%= link_to 'Cadastrar novo galpão', new_warehouse_path%></p>
+<% end %>
+
+<% if user_signed_in? %>
+  <div class="ls-box-filter">
+    <%= form_with url: search_warehouses_path, method: :get do %>
+      <%= label_tag :q, 'Busca: ', class: "ls-label-text" %>
+      <%= text_field_tag :q %>
+      <%= submit_tag 'Pesquisar', class: "ls-btn" %>
+    <% end %>
+  </div>
 <% end %>
 
 <% @warehouses.each do |w| %>
-  <p>
-    <%= link_to w.name, warehouse_path(w.id) %>
-    <%= w.code %>
-  </p>
-<% end %>
-
-
-<% if user_signed_in? %>
-  <h2>Buscar galpões</h2>
-  <%= form_with url: search_warehouses_path, method: :get do %>
-    <%= label_tag :q, 'Busca:' %>
-    <%= text_field_tag :q %>
-    <%= submit_tag 'Pesquisar' %>
-  <% end %>
+  <div class="ls-list">
+    <header class="ls-list-header">
+      <div class="ls-list-title col-md-4">
+        <%= link_to w.name, warehouse_path(w.id) %>
+        <small><%= w.code %></small>
+      </div>
+      <div class="col-md-3 col-md-offset-5 ls-txt-right">
+        <%= link_to "Ver detalhes", warehouse_path(w.id), class: "ls-btn-primary ls-btn-sm"%>
+      </div>
+    </header>
+  </div>
 <% end %>
 
 <hr>

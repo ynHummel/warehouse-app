@@ -1,4 +1,4 @@
-<h1>Novo Galpão</h1>
+<h1 class="ls-title-intro ls-ico-pencil ls-no-bg">Novo Galpão</h1>
 
 <% if @warehouse.errors.any?  %>
   <span> Verifique os campos abaixo: </span>
@@ -9,48 +9,51 @@
   </ul>
 <% end %>
 
-<%= form_with model: @warehouse do |form| %>
-  <div>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-  <div>
-    <%= form.label :code %>
-    <%= form.text_field :code %>
-  </div>
-  <div>
-    <%= form.label :description %>
-    <%= form.text_area :description %>
-  </div>
-  <div>
-    <%= form.label :address %>
-    <%= form.text_field :address %>
-  </div>
-  <div>
-    <%= form.label :city %>
-    <%= form.text_field :city %>
-  </div>
-  <div>
-    <%= form.label :state %>
-    <%= form.text_field :state %>
-  </div>
-  <div>
-    <%= form.label :postal_code %>
-    <%= form.text_field :postal_code %>
-  </div>
-  <div>
-    <%= form.label :total_area %>
-    <%= form.number_field :total_area %>
-  </div>
-  <div>
-    <%= form.label :useful_area %>
-    <%= form.number_field :useful_area %>
-  </div>
-  <div id="categories">
-    <%= form.label :product_category_ids, 'Categorias' %>
-    <%= form.collection_check_boxes :product_category_ids, @categories, :id, :name %>
-  </div>
-  <div>
-    <%= form.submit 'Salvar'  %>
-  </div>
-<% end  %>
+<div class= "ls-box"> 
+  <%= form_with model: @warehouse, class: "ls-form" do |form| %>
+    <fieldset>
+      <%= form.label :name, class: "ls-label ls-labels"%>
+      <%= form.text_field :name, class:"col-md-5"%>
+    </fieldset> <br />
+    <fieldset>
+      <%= form.label :code, class: "ls-label ls-labels"%>
+      <%= form.text_field :code, class:"col-md-5" %>
+    </fieldset> <br />
+    <fieldset>
+      <%= form.label :description, class: "ls-label ls-labels"%>
+      <%= form.text_area :description, class: "col-md-5"%>
+    </fieldset> <br />
+    <fieldset>
+      <%= form.label :address, class: "ls-label ls-labels" %>
+      <%= form.text_field :address, class:"col-md-5"%>
+    </fieldset> <br />
+    <fieldset>
+      <%= form.label :city, class: "ls-label ls-labels"%>
+      <%= form.text_field :city, class:"col-md-5"%>
+    </fieldset> <br />
+    <fieldset>
+      <%= form.label :state, class: "ls-label ls-labels"%>
+      <%= form.text_field :state, class:"col-md-5"%>
+    </fieldset> <br />
+    <fieldset>
+      <%= form.label :postal_code, class: "ls-label ls-labels"%>
+      <%= form.text_field :postal_code, class:"col-md-5"%>
+    </fieldset> <br />
+    <fieldset>
+      <%= form.label :total_area, class: "ls-label ls-labels"%>
+      <%= form.number_field :total_area, class:'col-md-5'%>
+    </fieldset> <br />
+    <fieldset>
+      <%= form.label :useful_area, class: "ls-label ls-labels" %>
+      <%= form.number_field :useful_area, class:'col-md-5'%>
+    </fieldset> <br />
+    <fieldset id="categories">
+      <%= form.label :product_category_ids, 'Categorias: ', class: "ls-label-text" %>
+      <%= form.collection_check_boxes :product_category_ids, @categories, :id, :name %>
+      
+    </fieldset> <br />
+    <fieldset class="btn-submit">
+      <%= form.submit 'Salvar', class: "ls-btn" %>
+    </fieldset> 
+  <% end  %>
+</div>
